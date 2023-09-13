@@ -1,0 +1,3939 @@
+Integration:
+============
+
+Salesforce --> 3 Classifications of Cloud Computing Services.
+	
+		1. SAAS: Readymade Applications. (Salesforce CRM)
+						
+		2. PAAS: Force.com Platform 
+				|
+				 --> Cloud-based Development Environment. 
+									 
+					1. Customize the Existing Salesforce CRM Application.
+					2. Leverage / Extend the Features by adding Additional Enhancements.
+					3. We can build our own custom applications.
+					(Banking, Finance, Manufacturing, Life Sciences, Pharma,....etc)
+					4. Integrate the Salesforce Applications with Any External System.
+								
+							
+							2 Programming Languages:
+								1. Apex Programming
+								2. Visualforce Programming
+								
+	Salesforce Application
+		(Force.com)
+	SuperMarket Business 
+		|
+		 --> Online Facility.
+				|
+				--> Select the Items.
+					 (Add them to Cart)	
+						|
+						--> Make the Payment
+								|
+								--> Banking Application.
+									 (Payment GateWay)
+										|
+										  --> Payment Done
+											 |
+											  --> Sales Order.
+											       |
+												--> Sales
+														
+	
+2 Ways to Integrate the Salesforce with External Systems.
+	
+		1. Declarative Integration. (Without Coding)
+		
+				1. By using Integration Tools (EAI Tools)
+					
+					Tibco
+					WebMethods
+					SeeBeyond
+					MS-Biztalk
+					DELL Boomi
+					Informatica Cloud
+					MuleSoft (Salesforce)
+					JitterBit
+					CastIron
+					AppExchange Products.
+							
+				2. Salesforce To Salesforce Integration
+				
+				3. Heroku Platform		
+		
+		2. Programmatic Integration. (With Coding)
+		
+				1. Email Services (Email Integration) 
+				
+				2. REST API 
+					(Representational State Transfer)  (JSON Format)
+					
+					Mongo DB --> JSON
+					
+				3. SOAP API  -- XML - WSDL (Web Service Description Language)
+					(Simple Object Access Protocol)
+					
+				4. Outbound Messaging --> XML (SOAP)
+		
+		
+Integration:
+------------
+An enterprise uses many applications, which is designed to manage the data related to the part of the business.
+
+Many of the applications has been built by using different platforms.
+
+Integration generally means combining parts so that they work together or form a whole. 
+
+	
+Benefits of Integration:
+------------------------
+	Offers all-in-one access:
+		Employees won’t have to switch systems to get what they need. They can stay logged into one system to 		get everything done.
+
+	Increases productivity:
+		Teams do a lot of cutting and pasting data to ensure it appears in all systems. However, manual tasks 		can lead to mistakes and turn into a time-waster. Integrated systems have automated checks and 		balances to ensure they have the same information. The time spent duplicating data will go away and 		employees get more done.
+
+	Provides effortless access to data:
+		System integration allows data to be accessed from all the integrated systems.
+
+	Enhances communication:
+		One department may be more comfortable with Salesforce while another prefers to work with a different 		system. Integrating the two systems allows each team to work in the system they prefer, which 		streamlines communications and leads to more information sharing.
+
+	Automates workflows without any code:
+		Since integrated systems play nice together, their workflows can be automated with point-and-click.
+
+	Provides more insightful reporting:
+		Employees get more detailed and relevant reports
+
+Ways to Integrate:
+------------------
+	1. User Interface Integration
+	2. Business Logic Integration
+	3. Data Integration
+
+Ways to Implement Integration:
+------------------------------
+	We have below common approaches to have the integration of Salesforce application with any external system.
+
+		1. Outbound Messaging. 
+		2. Email Services (Inbound) 
+		3. Call Ins 
+		4. Call Outs 
+	
+Salesforce To Salesforce Integration:
+=====================================
+	Step 1: We need the Two Salesforce Organizations, to be used to share the records
+			from One Organization to another.
+			
+				Provider / Publisher: training.batch331@cis.com  (AP16)
+				
+				Consumer / Subscriber: training.batch332@cis.com (AP17)
+				
+	
+	Step 2: We need to Send the Invitation from Provider to Consumer.
+			
+			Step 1: Enable the Salesforce To Salesforce Settings in both the
+					Organizations.
+							
+						Setup --> Build --> Customize
+							1. Click on "Salesforce To Salesforce" link and expand it.
+							2. Click on "Salesforce To Salesforce Settings" link.
+							3. Select the Checkbox "Enable Salesforce To Salesforce".
+							4. Click on "Save" button.
+							
+			Step 2: (Provider) Create an Account Record and a Contact Record.
+				
+					1. Create an Account Record with the required field values.
+					2. Create a Related Contact Record, We need to specify the Consumer
+						Organization's Email Id inside the Contact Record's Email field.
+						
+	Step 3: Send the Invitation to the Consumer and Map the Connection between the
+			Organizations.					
+			
+			Provider:
+				1. Send the Invitation Request.
+					Goto the "TabBar" and Click on "+" symbol.
+						1. Click on "Customize My Tabs" button.
+						2. Select the Tab "Connections" and add it.
+						3. Click on "Save" button.
+						
+				2. Send the Invitation Request by mapping the Connection.
+					Click on the "Connections" tab.
+						1. Click on "New" button, to add a New Connection REquest to be
+							get send to the Consumer.
+						2. Select the "Partner Account Record" by using the "Lookup" icon.
+							(Ex: Partner Account 332)
+						3. Select the "Partner Contact Record" by using the "Lookup" icon.
+							(Ex: Partner Contact 332)
+						4. Click on "Save" button.
+						
+	Step 4: Consumer Organization Should Accept the Invitation.
+				Goto the "Consumer Organization's Email ID" and open the Email.
+					1. Copy the Invitation Request.
+					2. Open in an another browser.
+					3. Enter the Credentials of the Consumer Organization.
+					4. Click on "Accept" button.
+					
+			Observation: Connection will be established between the Organizations and
+					Provider and Send the Records and Consumer can Accept the records.
+					
+	Step 5: (Provider) Select the Required objects to be get Published from Provider to
+			Consumer.
+			
+				Click on the "Connections" tab.
+					1. Click on "Connection Name" which has been established for the consumer.
+					2. Goto the "Published Objects" section.
+					3. Select the Required Objects to be get Publish.
+						(Ex: Account, Contact, Lead, Case, Opportunity, Hiring Manager,..)
+					4. Click on "Save" button.
+					
+	Step 6: (Consumer) Subscribe the Objects provided by the Provider.
+	
+				Goto the Consumer Organization.
+					1. Click on the "Connections" tab.
+					2. Open the Connection link established from the provider.
+					3. Goto the "Subscribed Objects" section.
+					4. Click on "Subscribed Objects" button.
+					5. Map the Object from Provider to Consumer.
+					
+						Ex:
+								Provider			Consumer
+								-------------------------
+								Account 		--> Account 		
+								Contact         --> Contact       
+								Lead            --> Lead          
+								Case            --> Case          
+								Opportunity     --> Opportunity   
+								Hiring Manager  --> Hiring Manager
+								Position        --> Position 
+								
+					6. Select the Checkbox "Auto-Accept".
+					7. Click on "Save" button.
+					
+	Step 7: (Provider) Select the Required Fields to be get Published from each object,
+			which has been published to the Consumer.
+					
+				Goto the "Connections Tab" and click on it.
+					1. Open the Connection Link has been established.
+					2. Goto the "Published Objects Section.
+					3. Click on "Edit" link for the Published Object (Ex: Account)
+					4. Select the Required fields to be get Published, by selecting the Checkbox.
+					5. Select the Checkbox "Send the Invitation Email".
+					6. Select the Checkbox "Send the Related Child Records Also".
+					7. Repeat the Steps 2 - 6 to Publish the fields for each Published object.
+					
+	Step 8: (Consumer) We need to Subscribe the Published Fields in each object, and we
+			have to Map the Fields with our local object fields.
+			
+				Goto the "Connections Tab" and click on it.
+					1. Open the Connection Link has been established.
+					2. Goto the "Subscribed Objects" Section.
+					3. Click on "Edit" link for each Subscribed object.
+					4. Map the Fields from Source(Provider) To Target(Consumer)
+						Ex:
+							Account Object:
+								Provider			Consumer
+								------------------------------
+								Name			--->  Name
+								Rating          --->  Rating
+								Industry        --->  Industry
+								AnnualRevenue   --->  AnnualRevenue
+								Active          --->  Active
+								WebSite         --->  WebSite
+								...
+								...
+					5. Repeat the Steps 2 - 4, to Map the Fields for each Subscribed Object.
+					6. Select the Checkbox "Auto-Accept", To make the records to be get Accepted Automatically from Provider to Consumer.
+	
+	Step 9: (Provider) Share the Records to the Consumer by using "External Sharing"
+			button.
+			
+				Goto the "Published" Objects Tab (Ex: Account)
+					1. Click on "New" button.
+					2. Click on "Force.com Quick Access" menu and expand it.
+					3. Click on "Edit Layout" link.
+					4. Goto the "Page Layout Editor".
+					5. Goto the "Always Visible Control" on the Top of the Editor.
+					6. Select the option "Related List" from the Left Panel.
+					7. Add the related list "External Sharing" onto the Account Page Layout.
+					8. Click on "Save" button.
+					9. Repeat the Steps 1 - 8, for all the Published object, and add the "External Sharing" RelatedList onto the Object's Page Layouts.
+					
+	Step 10: (Provider) Share the Record to the Consumer.
+		
+				1. Click on "Accounts Tab".
+				2. Click on "New" button.
+				3. Enter the Field Values, and Save the Record.
+				4. Goto the "External Sharing" Related List.
+				5. Click on "External Sharing" button.
+				6. Select the "Connection Name" from the Multi-Select Picklist (Ex: MNC)
+				7. Click on "Share" button.
+			
+		Consumer:
+			Consumer will be able to View the record, and they can perform the operations on the records.
+					
+					
+					
+					========================================================================================================================================================================================
+					========================================================================================================================================================================================
+	
+	
+	
+	WebServices:
+============
+WebService are nothing but the Custom Business Logic, which can be accessible by the External Systems.
+
+By using WebServices we can provide the communication between the different disparate systems, which has been developed by using different programming languages and running on different platforms.
+
+WebServices provides the Platform-independent communication between the applications.
+
+		Salesforce		<------ WebServices  ------>    Java
+		Application						  				Application	
+		
+By using WebServices, we can expose the Data(Records), Business Logics and functionalities to the Third Party Systems.
+
+By using Apex Programming, we can implement 2 Types of WebServices
+
+	1. REST Based WebServices
+	2. SOAP Based WebServices
+	
+REST Based WebServices / Apex REST:
+===================================
+	REST --> Representational State Transfer.
+	
+	By using REST,  we can access the Resources over the internet with the help of HTTP protocol.
+	
+	REST is an Architectural Style, which has been purely built upon HTTP protocol. It used the HTTP protocol internally to provide the communication between the applications.
+	
+	In REST WebServices, each Object, Business Logic and Class and Functionalities should be implemented in the form of a "Resource".
+	
+	Each Resource should be identified by using a "Resource Name". The Developer can provide the resource name based on the need.
+	
+	Ex:
+		Table Name		Resource Name
+		-------------------------------
+		Account 			001
+		Contact				003
+		Opportunity			006
+		Case				500
+		Solution			501
+		Lead				00Q
+		Campaign			701
+		Order				801
+		User				005
+		Task				00T
+		Event				00U
+		Group				00G
+		...
+		...
+	
+	Every resource can be accessible by using a URI (Uniform Resource Identifier).
+	Ex:
+		https://sample.com/<resourceName>
+		
+	Ex:
+		https://ap16.salesforce.com/001 ---> Account Object Records
+		https://ap16.salesforce.com/500 ---> Case Object Records
+		
+		https://ap16.salesforce.com/apex/ShowAllAccountsPage ---> Visualforce Page
+		
+	To access the resources we have to specify the HTTP Method, which indicates what type of operation the user wants to perform on the resource. 
+	
+	HTTP Protocol provides the below Methods.
+	
+		1. GET (To Retrieve the Records from the Resource / Object)
+		2. POST (To Insert the Records into the Resource / Object)
+		3. PUT  (To Update the records into the Resource)
+		4. PATCH (To Perform both INSERT + UPDATE operations on the resource)
+		5. DELETE (To Delete the records from the object / resource)
+		
+	Note:
+		REST based WebServices can provide the results in the form of "XML / JSON / TEXT".
+		
+	Upon Creating the REST WebServices, we have to use the below Annotations.
+
+		1. @RestResource()
+		2. @HttpGet()
+		3. @HttpPost()
+		4. @HttpPut()
+		5. @HttpPatch()
+		6. @HttpDelete()
+		
+@RestResource:
+==============
+	This annotation is used to expose an apex class / business logic class to the Third Party Applications.
+	
+	Inside the Class, we can provide the required Business Logic in the form of various methods.
+	
+	Note:
+		Always WebService class should be defined with "Global" access specifier. We have to specify the resource name for the class by using "@RestResource()" annotation on top of the Class as below.
+		
+	Syntax:
+		@RestResource(URLMapping='/<ResourceName>/*')
+		Global Class <ClassName>
+		{
+			// Write the Business Logic..
+		}
+		
+	Ex:
+		@RestResource(URLMapping='/AccountsService/*')
+		Global Class AccountsManager
+		{
+			// Write the Business Logic..
+		}
+		
+		
+		@RestResource(URLMapping='/CommonService/*')
+		Global Class CommonHelper
+		{
+			// Write the Business Logic...
+		}
+		
+Accessing the Resource:
+-----------------------
+	We can access / invoke each Resource by using a URI over the "http protocol".
+	
+	Syntax:
+		https://<ServerNumber>.Salesforce.com/services/apexrest/<ResourceName>
+		
+	Ex:
+		https://ap16.salesforce.com/services/apexrest/CommonService
+		
+		https://ap16.salesforce.com/services/apexrest/AccountsService
+		
+	We can invoke / test the rest WebServices by using the below tools.
+
+			1. Workbench Tool
+			2. Postman Tool
+			3. HP QTP Tool
+			4. Through Apex Programming
+			5. By using Third Party Applications
+			6. By using Integration Tools
+				(Ex: Tibco, WeMethods, SeeBeyond, BizTalk, MuleSoft,...etc.)
+		
+@HttpGet Method:
+================
+This annotation is used to get the required resource information from the Provider to Consumer.
+
+Note: This annotation can be applicable only on method level (i.e. Procedure / Function)
+
+Note:
+	All the WebService methods should be defined with "Global" access specifier, and should be defined as "Static".
+	
+Syntax:
+	@HttpGet
+	Global static <ReturnType> <MethodName>()
+	{
+		// Write the Business Logic..
+	}
+	
+Note:
+	We can't create multiple methods inside the WebService class with the same annotation.
+	(Ex: We can have only one "@HttpGet" annotated method inside the WebService class).
+	
+Ex:
+	@RestResource(URLMapping='/AccountRecordsService/*')
+	Global Class AccountsManager
+	{
+		@HttpGet
+		Global Static List<Account> GetAllAccounts()
+		{
+			// Write the Business Logic..
+		}
+	}
+	
+UseCase:
+========
+	Create a Restful WebService to get All the Account Records from the Account Object.
+	
+WebService Class:
+-----------------
+@RestResource(URLMapping='/AccountsService/*')
+Global class AccountsManagerService 
+{
+    @HttpGet
+	Global static List<Account> GetAllAccountRecords()
+    {
+        List<Account> lstAccounts = [Select id, name, rating, industry, annualrevenue,
+                                    				phone, fax, type, active__C
+                                    					from Account
+                                    						Order by name];
+        
+        return lstAccounts;
+    }
+}
+
+Testing Process: (By using Workbench Tool : https://Workbench.Developerforce.com)
+----------------
+	Resource URL / EndPoint: /services/apexrest/AccountsService
+	Method Name: GET
+	
+UseCase:
+========
+	Create a Restful WebService to get All the New Cases information from the Case Object.
+	
+WebService Class:
+-----------------
+@RestResource(URLMapping='/CaseService/*')
+Global class CaseManagerService 
+{
+	@HttpGet
+    Global static List<Case> GetAllNewCases()
+    {
+        List<Case> lstCases = [Select id, caseNumber, status, type, reason, origin, 
+                               					priority, subject
+                              						from Case
+                              							Where Status = 'New'
+                              								order by caseNumber];        
+        
+        return lstCases;
+    }
+}
+
+Testing Process:
+----------------
+	Resource URL: /services/apexrest/CaseService
+	Method : GET
+	
+Assignments:
+============
+	1. Create a WebService, to expose all the Hiring Manager Records to the Third Party Applications.
+	
+	2. Create a WebService, to Access all the Lead Records whose AnnualRevenue is more than 2,00,000.
+	
+	3. Create a WebService, to access all the Position Records whose Status is "In Progress".
+	
+RestContext Class:
+==================
+This Class is used to establish the secured communication channel between the Provider and the Consumer. So that Consumer can pass the required input parameters to the Provider.
+
+Then provider can return the required information to the consumer.
+
+It contains the below inner Classes.
+
+	1. RestRequest Class;
+		This Class is used to make a request to the WebService to get the required information.
+		
+		The Consumer can pass the required input parameters to the WebService by using RestRequest class, so that they can get the required response from the WebService.
+		
+		Note:
+			It will store the input parameters in the form of "Key-Value" pairs. Where Key --> Parameter Name. Value --> Parameter Value.
+			
+		Ex:
+						Key				 Value
+					  ---------------------------------
+					    Id				'001464564564'
+						Name			'Test'
+						Rating			'Education'
+						AnnualRevenue 	10000
+			
+		Property:
+			Params:
+				This property contains all the Input Parameters supplied by the Consumer to the WebService Class.
+				
+				It contains the information in the form of a Map Collection. We can collect the input parameters from the "RestRequest" class as below.
+				
+				Syntax:
+					Map<String,String> <objectName> = RestContext.Request.Params;
+					
+				Ex:
+					Map<String, String> inputParams = RestContext.Request.Params;
+					
+	2. RestResponse Class:
+		By using this class, we can collect the response from the WebService class to the Third Party Application.
+			
+UseCase:
+========
+	Create a WebService, to Get the Required Lead Record information based on the Lead ID.
+	
+WebService Class:
+-----------------
+@RestResource(URLMapping='/LeadRecordsService/*')
+Global class LeadManagerService 
+{
+    @HttpGet
+	Global static Lead GetLeadRecordByID()
+    {
+        Map<String,String> inputParams = RestContext.request.Params;
+        
+        Lead leadRecord = [Select id, firstname, lastname, email, company, phone, title,
+                          						Status, fax, rating, industry, annualrevenue
+                          							from Lead
+                          								Where id =: inputParams.get('Id')];
+        
+        
+        return leadRecord; 
+    }
+}
+
+Testing Process:
+---------------
+	Resource URL: /services/apexrest/LeadRecordsService/?Id=00Q2v00001dln9s
+	Method : GET
+	
+UseCase:
+========
+	Create a WebService, to fetch the Case Records based on the specified priority at runtime.
+	
+WebService Class:
+-----------------
+@RestResource(URLMapping='/CaseManagerService/*')
+Global class CaseRecordsService 
+{
+	@HttpGet
+    Global Static List<Case> GetCasesByPriority()
+    {
+        Map<String, String> inputParams = RestContext.request.Params;
+        
+        List<Case> lstCaseRecords = [Select id, caseNumber, Status, Priority, Type, Origin, 
+                                     				Reason, Subject
+                                    					from Case
+                                    						Where Priority =: inputParams.get('priority')];
+        
+        return lstCaseRecords;
+    }
+}
+
+Testing Process:
+----------------
+	Resource URL : /services/apexrest/CaseManagerService/?priority=Medium
+	Method : GET
+		
+Assignments:
+============
+	1. Create a WebService, to Get the required Account Records based on the Specified Industry Name.
+	
+	2. Create a WebService, to Get All the Related Contact Records based on the Specified Account Name.
+	
+	3. Create a WebService, to Get All the Position Records based on the Specified Location Name.
+	
+	4. Create a WebService, to Get All the Related Candidates for the specified "Position Name".
+	
+@HttpDelete Method:
+===================
+By using this method, we can remove either one or more records from the objects with the help of the WebService.
+
+We need to fetch records from the object to be get removed based on one or more conditions.
+
+Syntax:
+	@HttpDelete
+	Global static <ReturnType> <MethodName>()
+	{
+		// Write the Business Logic to Remove the Records.
+	}
+	
+UseCase:
+========
+Create a WebService to remove the Hiring Manager Record from the object based on the Hiring Manager Record Id.
+
+Service Class:
+--------------
+@RestResource(URLMapping='/HRService/*')
+Global class HiringManagerService 
+{
+	@HttpDelete
+    Global static string DeleteHRRecord()
+    {
+     	Map<string, string> inputParams = RestContext.request.Params;        
+        string hrRecordId = inputParams.Get('Id');
+        
+        Delete [Select id, Name from Hiring_Manager__c
+               				Where id =: hrRecordID];     
+        
+        return 'Record Deleted';
+    }
+}
+
+Testing Process:
+----------------
+	EndPoint URL: /services/apexrest/HRService/?Id=a032v00006NYCg0
+	MethodName : DELETE
+	
+UseCase:
+========
+	Create a WebService, to Remove all the Related Contact Records from the object based on the specified Account Name.
+	
+Service Class:
+--------------
+@RestResource(URLMapping='/ContactDeleteService/*')
+Global class ContactsDeletionService 
+{
+	@HttpDelete
+    Global static string RemoveRelatedContacts()
+    {
+        Map<String,String> inputParams = RestContext.request.Params;
+        
+        List<Contact> lstContacts = [Select id, firstname, lastname, Account.Name
+                                     			from Contact
+                                     				Where account.name =: inputParams.Get('Name')];
+        
+        Delete lstContacts;
+        
+        return 'Contacts Deleted';
+    }
+}
+
+Testing Process:
+----------------
+	EndPoint URL: /services/apexrest/ContactDeleteService/?Name=Edge+Communications
+	MethodName : Delete
+	
+Note:
+	Upon Deleting the Records from the Object by using HTTPDelete Method the Deleted Records will get exist inside the RecycleBin for 15 Days.
+	
+@HttpPost Method:
+=================
+By using this method, we can insert either One / More number of records into the Salesforce object with the help of "WebServices".
+
+Upon inserting the records, we have to pass the field values in the form of "{} Format" by using "Request Body".
+
+Syntax:
+	@HttpPost
+	Global Static <ReturnType> <MethodName>(<Parameters>)
+	{
+		// Write the Business Logic to insert the records.
+	}
+	
+UseCase:
+========
+	Create a RestFul WebService, to Insert an Account Record into the object.
+	
+Service Class:
+--------------
+@RestResource(URLMapping='/NewAccountService/*')
+Global class NewAccountsManagerService 
+{
+	@HttpPost
+    Global Static string InsertNewAccount(string accName, string accRating, string accIndustry,
+                                         Decimal accRevenue, string accPhone, string accFax,
+                                         string accWebSite, string accType, string accOwnership,
+                                         string accActive, string accPriority, string accPan)
+    {
+       		Account acc = new Account();
+        
+        	acc.Name = accName;
+        	acc.Rating = accRating;
+        	acc.Industry = accIndustry;
+        	acc.AnnualRevenue = accRevenue;
+        	acc.Phone = accPhone;
+        	acc.Fax = accFax;
+        	acc.Type = accType;
+        	acc.Ownership = accOwnership;
+        	acc.Website = accWebSite;
+        	acc.Active__c = accActive;
+        	acc.CustomerPriority__c = accPriority;
+        	acc.PAN_Number__c = accPan;
+        
+        insert acc;
+        
+        if(acc.Id != null)
+            return 'Account Inserted.';
+        else
+            return 'Something Went Wrong in Account Data.';
+    }
+}
+
+Testing Process:
+----------------
+	EndPoint URL: /services/apexrest/NewAccountService
+	MethodName : POST
+	Request Body: 
+			{
+				"accName":"Santhosh Verma",
+				"accRating":"Hot",
+				"accIndustry":"Technology",
+				"accPhone":"9900998877",
+				"accFax":"9977665566",
+				"accType":"Prospect",
+				"accOwnership":"Private",
+				"accWebSite":"www.salesforce.com",
+				"accPan":"ALPHJ8989E",
+				"accPriority":"High",
+				"accActive":"Yes",
+				"accRevenue":4700000
+			}
+
+UseCase:
+========
+	Create a WebService, to Insert Multiple Hiring Manager Records into the object.
+
+Service Class:
+--------------
+@RestResource(URLMapping='/BulkHRRecordsService/*')
+Global class BulkHiringManagerRecordsService 
+{
+	@HttpPost
+    Global static string InsertBulkHRRecords()
+    {
+        string hrRecordsCollection = RestContext.request.requestBody.ToString();
+        
+        List<Hiring_Manager__C> lstHRRecords = (List<Hiring_Manager__C>) System.JSON.deserialize(hrRecordsCollection, List<Hiring_Manager__C>.Class);
+        
+        if(! lstHRRecords.isEmpty())
+        {
+            insert lstHRRecords;
+            return 'SUCCESS';
+        }
+        else
+            return 'FAILED';
+    }
+}
+
+Testing Process:
+----------------
+	EndPoint URL: /services/apexrest/BulkHRRecordsService
+	MethodName : POST
+	Request Body:
+			[
+				{
+					"Name":"Service 1 HR",
+					"Location__C":"Bangalore",
+					"Contact_Number__C":"9900998877",
+					"Email_id__C":"service1hr@gmail.com"
+				},
+				{
+					"Name":"Service 2 HR",
+					"Location__C":"Hyderabad",
+					"Contact_Number__C":"9900990099",
+					"Email_id__C":"service2hr@gmail.com"
+				},
+				{
+					"Name":"Service 3 HR",
+					"Location__C":"Chennai",
+					"Contact_Number__C":"7788998877",
+					"Email_id__C":"service3hr@gmail.com"
+				},
+				{
+					"Name":"Service 4 HR",
+					"Location__C":"Bangalore",
+					"Contact_Number__C":"8899884466",
+					"Email_id__C":"service4hr@gmail.com"
+				}
+			]
+	
+Assignments:
+============
+	1. Create a WebService, to Insert a Hiring Manager Record into the object.
+	
+	2. Create a WebService, to Insert a Lead Record inside the object with "Hot
+		Rating" and "Finance Industry".
+		
+	3. Create a WebService, to Insert a New Case Record inside the object with "High Priority" and "Working Status".
+	
+	4. Create a WebService, to insert 2 Account Records inside the object.
+	
+	5. Create a WebService, to Insert 5 Opportunity Records inside the object.
+	
+@HttpPut Method:
+================
+By using this method, we can prepare a WebService, which allows us to perform the Update operations on the object records.	
+
+By using this feature, we can update either One / More records inside the object.
+
+Upon updating the records, we have to supply the record Id, and the New Values for the fields to be get updated.
+
+Syntax:
+	@HttpPut
+	Global Static <ReturnType> <MethodName>(<Parameters>)
+	{
+		// Write the Business Logic to Update the Records..
+	}
+	
+UseCase:
+========
+	Create a WebService, to Update the Case Record with the Specified Status and Priority for the Case Record based on the CaseNumber.
+	
+Service Class:
+--------------
+@RestResource(URLMapping='/CaseRecordManagerService/*')
+Global class CaseRecordsManagerService 
+{
+	@HttpPut
+    Global static String UpdateCaseRecord(string cNumber, string cPriority, string cStatus)
+    {
+        if(cNumber != null && cNumber != '')
+        {
+         	Case cRecord = [Select id, caseNumber, priority, Status, origin, reason
+                           				from Case
+                           					Where caseNumber =: cNumber];   
+            
+            if(cRecord.id != null)
+            {
+                cRecord.Status = cStatus;
+                cRecord.Priority = cPriority;
+                
+                update cRecord;
+                
+                return 'Updated Successfully.';
+            }
+            else
+            {
+                return 'Case Record Not Found / Invalid Case Number.';
+            }
+        }
+        else
+            return 'Please provide the Case Number.';
+    }
+}
+
+Testing Procedure:
+------------------
+	EndPoint URL: /services/apexrest/CaseRecordManagerService
+	MethodName : PUT
+	Request Body:			
+			{
+				"cNumber":"00001003",
+				"cPriority":"High",
+				"cStatus":"Working"
+			}
+
+UseCase:
+========
+	Create a WebService, to Assign the Rating Value and the AnnualRevenue value for the Records based on the specified industry as below.
+	
+			Industry Name		Rating			AnnualRevenue
+			--------------------------------------------------
+				Banking			Hot					79,00,000
+				Finance			Warm				57,00,000
+				Insurance		Hot					84,00,000
+				Education		Cold				41,00,000
+				Consulting		Warm				50,00,000
+				
+Service Class:
+--------------
+@RestResource(URLMapping='/AccountsUpdateService/*')
+Global class AccountRecordsManagerService 
+{
+	@HttpPut
+    Global static string UpdateAccountRecords(string accIndustry)
+    {
+        if(accIndustry != null && accIndustry != '')
+        {
+            List<Account> lstAccounts = [Select id, name, industry, rating, annualrevenue
+                                        			from Account 
+                                        				Where industry =: accIndustry];
+            
+            if(! lstAccounts.isEmpty())
+            {
+                for(Account acc : lstAccounts)
+                {
+                    Switch ON acc.Industry
+                    {
+                     	When 'Banking'   
+                        {
+                            acc.Rating = 'Hot';
+                            acc.Annualrevenue = 7900000;
+                        }
+                        When 'Finance'
+                        {
+                            acc.Rating = 'Warm';
+                            acc.Annualrevenue = 5700000;
+                        }
+                        When 'Insurance'
+                        {
+                            acc.Rating = 'Hot';
+                            acc.Annualrevenue = 8400000;
+                        }
+                        When 'Education'
+                        {
+                            acc.Rating = 'Cold';
+                            acc.Annualrevenue = 4100000;
+                        }
+                        When 'Consulting'
+                        {
+                            acc.Rating = 'Warm';
+                            acc.Annualrevenue = 5000000;
+                        }
+                    }
+                }
+                
+                Update lstAccounts;
+                return 'Records Updated.';
+            }
+            else
+                return 'No Matching Records Found.';
+        }
+        else
+        {
+            return 'Please provide the Industry Name.';
+        }
+    }
+}
+
+Testing Process:
+----------------
+	EndPoint URL: /services/apexrest/AccountsUpdateService
+	Method Name: PUT
+	Request Body: 
+		{
+			"accIndustry":"Education"
+		}
+
+@HttpPatch Method:
+==================
+
+Syntax:
+	@HttpPatch
+	Global Static <ReturnType> <MethodName>(<Parameters>)
+	{
+		// Write the Business Logic..
+	}
+	
+UseCase:
+========
+	Create a WebService, to update the Hiring Manager Contact Number as "9900008877" for the HR Records whose Location is equals to the specified CityName at runtime. And Create a New Hiring Manager Record also.
+	
+Service Class:
+--------------
+@RestResource(URLMapping='/HiringManagerPatchService/*')
+Global class HiringManagerUpsertService 
+{
+	@HttpPatch
+    Global Static string UpsertHiringManagerRecords(string hrCityName)
+    {
+        if(hrCityName != null && hrCityName != '')
+        {
+            List<Hiring_Manager__C> lstHRRecords = [Select id, name, Location__C, contact_Number__C
+                                                   				from Hiring_Manager__C
+                                                   					Where Location__C =: hrCityName];
+            
+            if(! lstHRRecords.isEmpty())
+            {
+               List<Hiring_Manager__C> hrRecordsToUpsert = new List<Hiring_Manager__C>();
+                
+               // Assign the New Value for Record..(i.e. Update)
+               for(Hiring_Manager__C hr : lstHRRecords) 
+               {
+                   hr.Contact_Number__C = '9900008877';
+                   
+                   hrRecordsToUpsert.Add(hr);
+               }
+               // Create a New HR Record..
+                Hiring_Manager__C hr = new Hiring_Manager__C();
+                	hr.Name = 'WebService Test HR';
+                	hr.Location__c = 'Chennai';
+                	hr.Contact_Number__c = '9999999999';
+                	hr.Email_ID__c = 'webservicetest@gmail.com';
+                
+                // Add the record to collection..
+                hrRecordsToUpsert.Add(hr);
+                
+                // Perform the Upsert Operations..
+                Upsert hrRecordsToUpsert;
+                
+                return 'Records Upserted';
+            }
+            else
+            {
+                return 'No Matching Records Found.';
+            }
+        }
+        else
+            return 'Please provide the City Name.';
+    }
+}
+
+Testing Process:
+----------------
+	EndPoint URL: /services/apexrest/HiringManagerPatchService
+	MethodName : PATCH
+	Request Body:
+		{
+			  "hrCityName":"Hyderabad"
+		}
+	
+
+OAuth Authentication:
+=====================
+
+Future Callouts:
+================
+
+
+
+
+
+
+
+
+=================================================================================================================================================================================================================
+=====================================================================================================================================================================================================================
+
+
+
+HTTP Class:
+===========
+Use the Http class to initiate an HTTP request and response.
+
+Methods: 
+--------
+1. Send(httpRequest):
+	This method will send the HTTP Request to the specified end-point and returns the HTTP Response.
+
+2. ToString(): 
+	Returns a string used to identify the object’s properties.
+
+HttpRequest Class:
+==================
+HttpRequest class is used to programmatically create HTTP requests like GET, POST, PUT, and DELETE.
+
+We can send the Request along with the required method Type.
+
+We can send the Request Headers, if needed for the Authentication of End-Point.
+
+We can Set the Connection Timeouts.
+
+We can send the Content to End-point in the form of message body.
+	
+Methods:
+--------
+	1. SetMethod(‘GET’)
+	2. SetEndPoint(‘https://gmail.com/accounts/’)
+	3. Setbody(‘Request Body’)
+	4. SetClientCertificateName(ceritifcateName)
+	5. SetTimeOut(Time)
+	6. SetHeader(Key,Vaue)
+	7. SetCompressed(Boolean)
+	
+Ex:
+	HttpRequest postalRequest = new HttpRequest();
+		
+		postalRequest.SetEndPoint('https://api.postalpincode.in/pincode/500038');
+		postalRequest.SetMethod('GET');
+		postalRequest.SetTimeOut(10000); (Between 1 - 1,20,000 MilliSeconds)
+
+HttpResponse Class:
+===================
+Use the HttpResponse class to handle the HTTP response returned by the Http class.
+
+We can get the Content of the Response Body.
+
+We can Set the Response Header, if needed.
+
+We can Set and Get the Status Code returned by HTTP Request class.
+
+Methods:
+--------
+	1. GetBody()
+	2. GetStatus()
+	3. GetStatusCode()
+	4. GetXMLStreamReader()
+
+Ex:	
+	Http postalHttp = new Http();
+
+	HttpRequest postalRequest = new HttpRequest();
+		
+		postalRequest.SetEndPoint('https://api.postalpincode.in/pincode/500038');
+		postalRequest.SetMethod('GET');
+		postalRequest.SetTimeOut(10000);
+
+	HttpResponse postalResponse = postalHttp.Send(postalRequest);
+	
+	string response = postalResponse.GetBody();	
+	system.debug('Response is....: '+ response);
+	
+Steps to Invoke the Third Party WebServices:
+============================================
+	Step 1: Get the Details of the WebService to be get invoked.
+				1. EndPoint URL.
+				2. Method Name
+				3. Required Input Parameters
+				4. Authorization Codes
+				
+	Step 2: We need to Add the EndPoint URL inside the Salesforce Application in
+			"Remote Site Settings" option.
+			
+			Setup --> Administer --> Security Controls.
+				1. Click on "Remote Site Settings" link.
+				2. Click on "New Remote Site" button.
+				3. Specify the Remote Site Name and Description
+				4. Specify the URL / Path of Remote Site.
+				5. Click on "Save" button.
+				
+	Step 3: Connect to the Third Party System / WebService by using HTTP,
+			HTTPRequest and HttpResponse Classes 
+			
+	Step 4: Get the Response Returned by WebService and Parse the Content and
+			represent inside the application.
+			
+UseCase:
+========
+	Design a Visualforce Page to Search the Postal Branch Details based on the specified Pin Code by invoking the Postal Pin Code API.
+
+Step 1: Collect the required input values.
+	EndPoint URL : https://api.postalpincode.in/pincode/{PINCODE}
+	Method Type : GET
+	Response Type : JSON
+
+Step 2: Add the URL inside the Remote Site Settings.
+	
+Step 3: Write the Code to initiate the request and get the response from the
+		WebService.
+		
+PostalBranchDetails Class:
+--------------------------
+public class PostOfficeBranch 
+{
+    Public string Name {get;set;}
+    Public string Description{get;set;}
+    Public string BranchType{get;set;}
+    Public string DeliveryStatus{get;set;}
+    Public string Circle{get;set;}
+    Public string District{get;set;}
+    Public string Division{get;set;}
+    Public string Region{get;set;}
+    Public string State{get;set;}
+    Public string Country{get;set;}
+}
+
+VF Page Code:
+-------------
+<apex:page controller="SearchIndianPostalBranchesController" setup="false" sidebar="false" showheader="true" tabStyle="Recruiter__c" >
+<apex:sectionHeader title="Postal" subtitle="Postal Branches"/>
+<apex:form >
+    <apex:Pageblock title="Postal Branches Block">
+        <apex:pageblockSection title="Search Branches" columns="2" collapsible="true"> 
+            <apex:inputtext label="Enter Postal Pin Code: " html-placeholder="Enter Pin Code" value="{!postalPinCode}"/>
+            <apex:commandButton value="Search Branches" action="{!SearchPostalBranches}" rerender="pgBlock"/>
+        </apex:pageblockSection>
+    </apex:Pageblock>
+    
+    <apex:Pageblock title="Postal Branches : ( {!lstBranches.Size} )" id="pgBlock">
+        <apex:pageblockTable value="{!lstBranches}" var="br">
+            <apex:column value="{!br.Name}" headerValue="Name"/>
+            <apex:column value="{!br.BranchType}" headerValue="BranchType"/>
+            <apex:column value="{!br.DeliveryStatus}" headerValue="DeliveryStatus"/>
+            <apex:column value="{!br.Circle}" headerValue="Circle"/>
+            <apex:column value="{!br.District}" headerValue="District"/>
+            <apex:column value="{!br.Division}" headerValue="Division"/>
+            <apex:column value="{!br.Region}" headerValue="Region"/>
+            <apex:column value="{!br.State}" headerValue="State"/>
+            <apex:column value="{!br.Country}" headerValue="Country"/>
+        </apex:pageblockTable>
+    </apex:Pageblock>
+</apex:form>  
+</apex:page>
+
+Controller Class:
+-----------------
+public class SearchIndianPostalBranchesController 
+{
+    Public string postalPinCode{get;set;}
+    Public List<PostOfficeBranch> lstBranches{get;set;}
+    
+    Public string postalResponseJSON {get;set;}
+    
+    Public void SearchPostalBranches()
+    {
+        lstBranches = new List<PostOfficeBranch>();
+        
+        if(postalPinCode != null && postalPinCode != '')
+        {
+            string endPointURL = 'https://api.postalpincode.in/pincode/'+ postalPinCode;
+            
+            Http postalHttp = new Http();
+            
+            HttpRequest postalRequest = new HttpRequest();
+                postalRequest.setEndpoint(endPointURL);
+                postalRequest.setMethod('GET');
+                postalRequest.setTimeout(20000);
+            
+            HttpResponse postalResponse = postalHttp.send(postalRequest);
+            postalResponseJSON = postalResponse.getBody();
+            
+            // Parse the JSON Content and represent in the Tabular format..
+            System.JSONParser pParser = System.JSON.createParser(postalResponse.getBody());
+            
+            While(pParser.nextToken() != null)
+            {
+                if(pParser.getCurrentToken() == JsonToken.FIELD_NAME && pParser.getText() == 'Message')
+                {
+                    pParser.nextToken();
+                    system.debug('JSON Response Message is...: '+ pParser.getText());
+                }
+                if(pParser.getCurrentToken() == JsonToken.FIELD_NAME && pParser.getText() == 'Status')
+                {
+                    system.debug('Response Status is...: '+ pParser.getText());
+                }
+                if(pParser.getCurrentToken() == JsonToken.FIELD_NAME && pParser.getText() == 'PostOffice')
+                {
+                    pParser.nextToken();
+                    if(pParser.getCurrentToken() == JsonToken.START_ARRAY)
+                    {
+                        pPArser.nextToken();
+                        While(pPArser.getCurrentToken() == JsonToken.START_OBJECT)
+                        {
+                            PostOfficeBranch branch = (PostOfficeBranch) pParser.readValueAs(PostOfficeBranch.Class);
+                            lstBranches.Add(branch);
+                            pParser.nextToken();
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+UseCase:
+========
+	Create a Visualforce Page to represent the Weather Details of the Specified City Name, by integrating with the "OpenWeatherMap" API.
+	
+Step 1: Collect the Required Inputs to invoke the WebService.
+		
+		End-Point URL: 
+			https://api.openweathermap.org/data/2.5/weather?q={city name}&appid={your api key}
+			
+		Parameters:
+				1. City Name:
+				2. AppID (applicationKey) = 21dc4546bf9ce1ec7978bf415a2caa5c
+		Method Type: GET
+
+Step 2: We need to add the End-Point URL inside the Remote Site Settings.
+
+Step 3: Create the Custom Labels, to Store the EndPoint URL and Application Key.
+		Custom Labels:
+		1. WeatherMapAPIEndPoint (System.Label.WeatherMapAPIEndPoint)
+		2. WeatherMapApplicationKey (Sytem.Label.WeatherMapApplicationKey)
+		
+Step 4: Design a Visualforce Page and Write the Business Logic to integrate with
+		the WeatherMap API and represent the results on the Page.
+	
+VF Page Code:
+-------------
+<apex:page controller="ShowWeatherDetailsByCityController" setup="false" sidebar="false" showheader="true" tabStyle="Position__c" >
+<apex:sectionHeader title="Weather" subtitle="Weather Details"/>
+<apex:form >
+    <apex:pageblock title="Weather Details Block">
+        <apex:PageBlockSection title="Search Weather Details" columns="2" collapsible="false">
+            <apex:inputtext label="Enter City Name : " html-placeholder="Enter City Name" value="{!cityName}"/>
+            <apex:commandButton value="Show Weather Details" action="{!GetWeatherDetails}" rerender="pgBlock"/>
+        </apex:PageBlockSection>
+    </apex:pageblock>
+    
+    <apex:Pageblock title="Weather Details for : {!cityName}" id="pgBlock">
+        <!-- Weather Details : {!weatherResponseJSON} -->
+    
+        <apex:PageblockSection title="Weather Details Section" columns="2" collapsible="false">
+            <apex:outputLabel ><b> Pressure Value : {!pressureValue} </b></apex:outputLabel>
+            <apex:outputLabel ><b> Average Temperature : {! averageTemperature} </b></apex:outputLabel>
+            <apex:outputLabel ><b> Humidity Value : {! humidityValue} </b></apex:outputLabel>
+            <apex:outputLabel ><b> Minimum Temperature : {! mintemperature}</b></apex:outputLabel>
+            <apex:outputLabel ><b> Feels Like Temperature : {!feelsLikeTemp } </b></apex:outputLabel>
+            <apex:outputLabel ><b> Maximum Temperature : {! maxTemperature}</b></apex:outputLabel>
+            
+        </apex:PageblockSection>
+    </apex:Pageblock>
+</apex:form>
+</apex:page>
+
+Controller Class:
+-----------------
+public class ShowWeatherDetailsByCityController 
+{
+    Public string cityName{get;set;}
+    Public string weatherResponseJSON{get;set;}
+    
+    // Define the variables to show the values on VF Page.
+    Public string humidityValue{get;set;}
+    Public string pressureValue{get;set;}
+    Public string feelsLikeTemp{get;set;}
+    Public string mintemperature{get;set;}
+    Public string maxTemperature{get;set;}
+    Public string averageTemperature{get;set;}
+    
+    Public void GetWeatherDetails()
+    {
+       // Prepare the required input..
+        string endpointURL = System.Label.WeatherMapAPIEndPoint +  cityName + '&appid='+ System.Label.WeatherMapApplicationKey;
+        
+        Http wHttp = new Http();
+        
+        HttpRequest weatherRequest = new HttpRequest();
+            weatherRequest.setEndpoint(endpointURL);
+            weatherRequest.setMethod('GET');
+            weatherRequest.setTimeout(60000);
+       
+        HttpResponse weatherResponse = wHttp.send(weatherRequest);        
+        weatherResponseJSON = weatherResponse.getBody();
+        
+        // Write the Code to Parse the JSON Response and represent on the VF Page..
+        System.JSONParser wParser = System.JSON.createParser(weatherResponse.getBody());
+        
+        While(wParser.nextToken() != null)
+        {
+            if(wParser.getCurrentToken() == JsonToken.FIELD_NAME && wParser.getText() == 'main')
+            {
+                wParser.NextToken();
+                
+                if(wParser.GetCurrentToken() == JsonToken.START_OBJECT)                
+                {
+                    wParser.NextToken();
+                    
+                    if(wParser.getCurrentToken() == JsonToken.FIELD_NAME && wParser.getText() == 'temp')
+                    {
+                        wParser.nextToken();
+                        averageTemperature = (wParser.getDecimalValue() - 273.15) + ' C';
+                    }
+                    wParser.NextToken();
+                    
+                    if(wParser.getCurrentToken() == JsonToken.FIELD_NAME && wParser.getText() == 'feels_like')
+                    {
+                        wParser.nextToken();
+                        feelsLikeTemp = (wParser.getDecimalValue() - 273.15)+ ' C';
+                    }
+                   
+                    wParser.NextToken();
+                    if(wParser.getCurrentToken() == JsonToken.FIELD_NAME && wParser.getText() == 'temp_min')
+                    {
+                        wParser.nextToken();
+                        mintemperature = (wParser.getDecimalValue() - 273.15)+ ' C';
+                    }
+                    
+                    wParser.NextToken();
+                    if(wParser.getCurrentToken() == JsonToken.FIELD_NAME && wParser.getText() == 'temp_max')
+                    {
+                        wParser.nextToken();
+                        maxTemperature = (wParser.getDecimalValue() - 273.15)+ ' C';
+                    }
+                    
+                    wParser.NextToken();
+                    if(wParser.getCurrentToken() == JsonToken.FIELD_NAME && wParser.getText() == 'pressure')
+                    {
+                        wParser.nextToken();
+                        pressureValue = wParser.getText();
+                    }
+                    wParser.nextToken();
+                    if(wParser.getCurrentToken() == JsonToken.FIELD_NAME && wParser.getText() == 'humidity')
+                    {
+                        wParser.nextToken();
+                        humidityValue = wParser.getText();
+                    }
+                }
+            }
+        }
+    }    
+}
+
+UseCase:
+========
+	Design a Visualforce Page to Send the SMS Notification to the Specified Mobile Number with the Specified Content.
+	
+	
+	
+	===================================================================================================================================
+	====================================================================================================================================
+	
+	
+	
+Email Services Business Use Case:
+=================================
+We have an External System(Service Tag Generator), which sends and Email Notification upon updating the contact records.Salesforce should receive the Email Notification and perform the DML operation in our Contact Object.
+
+Pre-Requisite: Create 2 Fields in Contact Object as Below.
+	1. Email Subject : Text (255)
+	2. Email Content : Text Area.
+
+	1. Based on the Received Email's "FromAddress", we need to fetch the Associated
+		Contact Record. (By matching with the Contact's "Email" Field value.)
+	2. Get the Contact Record Details.
+	3. If Matching Contact Record Exist.
+		3.1. Update the Contact Record Details as below.
+			Contact : Email_Subject__c <--- Email Subject 
+			Contact : Email_Content__c <--- Email Notification Content
+			Attachments: Add All the Email attachments to Contact Record.
+	4. If Matching Contact Record Not Found.
+		4.1. Create a New Contact Record as below.
+			Contact: LastName <--- From Email Address of Email Notification
+			Contact : Email_Subject__c <--- Email Subject
+			Contact : Email_Content__c <--- Email Notification Content
+			Attachments: Add All the Email attachments to Contact Record.
+
+Business Logic Class:
+=====================
+Global class UpdateContactsEmailServiceHelper implements Messaging.InboundEmailHandler
+{
+	Global Messaging.InboundEmailResult HandleInboundEmail(Messaging.InboundEmail email, Messaging.InboundEnvelope env)
+    {
+        Messaging.InboundEmailResult result= new Messaging.InboundEmailResult();        
+        List<Contact> contactRecords;    
+        
+        try
+        {
+           contactRecords = new List<Contact>();
+            
+           contactRecords = [Select id, firstname, lastname, email, email_subject__C, email_content__C
+                           				from Contact
+                           					Where email =: email.fromAddress
+                           							Limit 1]; 
+        }
+        Catch(System.Exception ex)
+        {
+            system.debug('Exception has been occured upon fetching the Record.');
+            system.debug('Exception Message is....: '+ ex.getMessage());
+            system.debug('Exception Line Number is....: '+ ex.getLineNumber());
+            system.debug('Exception Root Cause is...: '+ ex.getCause());
+            system.debug('Stack Trace String is....: '+ ex.getStackTraceString());
+        }
+        
+        // Check for the Contact Record Existance..
+        if(! contactRecords.isEmpty() ) 
+        {
+            // Matching Contact Record Found..            
+            	contactRecords[0].Email_Subject__c = email.subject;
+            	contactRecords[0].Email_Content__c = email.plainTextBody;             
+        }
+        else 
+        {
+            // Matching Contact Not Found.. 
+            Contact contactRecord = new Contact();           
+            	contactRecord.LastName = email.fromName;
+            	contactRecord.Email = email.fromAddress;
+            	contactRecord.Email_Subject__c = email.subject;
+            	contactRecord.Email_Content__c = email.plainTextBody;
+            
+              contactRecords.Add(contactRecord);
+        }
+        
+        upsert contactRecords;
+		
+		// Check for the Attachments and add it to Contact Record..
+		
+        List<Attachment> lstAttachments = new List<Attachment>();
+		
+        // Check for the Text Attachments..
+        if(email.textAttachments != null)
+        {
+            for(Messaging.InboundEmail.textAttachment txtAttachment : email.textAttachments)
+            {
+        		Attachment  attach = new Attachment();
+                
+                attach.body = Blob.valueOf(txtAttachment.body);
+                attach.Name = txtAttachment.FileName;
+                attach.ParentId = contactRecords[0].Id;
+                
+                lstAttachments.Add(attach);				                
+            }
+        }
+        
+        // Check for the Binary Attachments..
+        if(email.binaryAttachments != null) 
+        {
+            for(Messaging.InboundEmail.BinaryAttachment bnrAttachment : email.binaryAttachments)
+            {
+               	Attachment  attach = new Attachment(); 
+                
+                attach.body = bnrAttachment.body;
+                attach.Name = bnrAttachment.fileName;
+                attach.ParentId = contactRecords[0].Id;
+                
+                lstAttachments.Add(attach);	
+            }
+        }
+        
+        // Insert the Attachments..
+        if(! lstAttachments.isEmpty())
+        {
+            insert lstAttachments;
+        }
+        
+        // Send the Result of Email Processing..
+        result.success = true;
+        return result;
+    }
+}			
+
+
+	===================================================================================================================================
+	====================================================================================================================================
+
+
+
+ JSON:
+=====
+	JSON --> Java Script Object Notation.
+
+	It is a most commonly used message format for applications irrespective of languages.
+	
+	Any programming language can understand JSON. Hence JSON is the most commonly used to message format for Interoperability.
+	
+	Ex:
+		Salesforce		---> Request (JSON) ---> Java 
+		Application		<--- Response (JSON) --- Application
+
+	JSON is a lightweight text-based open standard designed for data interchange.
+
+	The JSON format was originally specified by "Douglas Crockford".
+
+	It was designed for human-readable data interchange.
+
+	It has been extended from the JavaScript scripting language.
+
+	The filename extension is ".json".
+
+	JSON Internet Media type is "application/json".
+
+Uses of JSON:
+=============
+	1. JSON format is used for serializing and transmitting structured data over network connection.
+	
+	2. It is primarily used to transmit data between a server and web applications.
+	
+	3. Web services and APIs use JSON format to provide public data.
+	
+	4. It can be used with modern programming languages.
+	
+Characteristics of JSON:
+========================
+	1. JSON is easy to read and write
+	2. It is a lightweight text-based interchange format.
+	3. JSON is language independent.
+
+Rules:
+======
+	JSON syntax is basically considered as a subset of JavaScript syntax; it includes the following.
+	
+		1. Data is represented in "Key-Value" pairs.
+		2. Curly braces hold objects and each name is followed by ':'(colon), the "Key-Value" pairs are separated by , (comma).
+		3. Square brackets hold arrays and values are separated by ,(comma).
+		
+	Syntax:
+		{"Key":"Value"}
+		
+	Ex:
+		{"Name":"Ramesh"}
+
+Supported Data Structures:
+==========================
+	JSON supports the following two data structures
+	
+		1. Collection of "Key-Value" pairs:
+			This Data Structure is supported by different programming languages.
+			
+		2. Ordered list of values:
+			Which includes array, list, etc.
+
+JSON Data Types:
+================
+	JSON format supports the following data types
+	
+Number DataType:
+================
+	This DataType is used to store the Numerical Values including "Integer Part and Decimal Part also".
+	
+	Note: Numerical values no need to be enclosed in the double quotes.
+	
+Syntax:
+	{"Key":<Value>}
+	
+Ex:
+	{"CustomerCode":1001}
+	{"AnnualRevenue":2500000}
+	{"ServiceTax":2500.50}
+	{"ProductWeight":45.750}
+	
+String DataType:
+================
+	String DataType allows us to store a Collection of characters including the special characters.
+	
+Syntax:
+	{"Key":"Value"}
+	
+Ex:
+	{"CustomerName":"Ramesh Kumar"}
+	{"Location":"Mumbai"}
+	{"Rating":"Hot"}
+	{"Industry":"Banking"}
+	{"EmailID":"sureshkumar@gmail.com"}
+	
+Boolean DataType:
+=================
+	This DataType allows us to store the TRUE / FALSE values.
+	
+Syntax:
+	{"Key":<Value>}
+	
+Ex:
+	{"ActiveStatus":true}
+	{"IsInStock":true}
+	{"IsBlocked":false}
+	{"CanDelete":false}
+	
+Array DataType:
+===============
+	Arrays allows us to store a collection of Homogeneous Elements. i.e. Arrays allows us to store the Similar DataType elements inside the format.
+	
+	Array elements should be enclosed inside the "Square Braces". Each element inside the array will be segregated by using a comma.
+	
+	Each element inside the array will get recognized by using an index position starting from "Zero".
+	
+Syntax:
+	{
+		"Key":[<Value1>,<Value2>,<Value3>,....., <ValueN>]
+	}
+	
+UseCase:
+--------
+	Define an array to store a collection Customer Codes, which are Numerical Values.
+	
+	{
+		"CustomerCodes":[1001,1002,1004,1007,1009,1211]
+	}
+	
+UseCase:
+--------
+	Define an Array to store the Collection of Country Names.
+	
+	{
+		"CountryNames":[
+							'USA',
+							'India',
+							'Australia',
+							'Japan',
+							'Middle East',
+							'China',
+							'Germany'
+						]
+	}
+	
+Object DataType:
+================
+	Object DataType is used to store a collection of elements of Heterogeneous type.
+	
+	Object should be always enclosed in the "Square Braces". We can place "N" number of elements inside the object by separating a comma.
+	
+	1. Each Object will be get represented in the form of "Key-Value" pair.
+	
+	2. Key should be a String Type.
+	
+	3. Value can be an "Object / An Array of Objects".
+	
+Syntax:
+	{
+		"KeyName": {
+						"Key":"Value",
+						"Key":"Value",
+						"Key":"Value",
+						...
+						"Key":"Value"
+				   }
+	}
+	
+Ex:
+	{
+		"CustomerRecord":{
+							"CustomerCode":1001,
+							"CustomerName":"Srinivas",
+							"Address":"Hyderabad",
+							"Salary":2000000,
+							"PhoneNumber":"9900998877",
+							"IsActive":true
+						 }
+	}
+	
+UseCase:
+--------
+	Prepare the JSON format to represent the Product Details.
+	
+	{
+		"ProductInfo":{
+							"ProductCode":450067,
+							"ProductName":"Laptop",
+							"Manufacturer":"DELL Inc.",
+							"UnitPrice":45000,
+							"IsInStock":true
+					  }
+	}
+	
+UseCase:
+--------	
+	Prepare a JSON format to represent the Multiple Products Information.
+	
+	{
+		"ProductsInfo": [
+		                   {
+								"ProductCode":23004500,
+								"ProductName":"Mobile",
+								"UnitPrice":15000,
+								"Manufacturer":"Samsung Inc.",
+								"IsInStock":true
+						   },
+						   {
+						   
+								"ProductCode":23009900,
+						        "ProductName":"Laptop",
+						        "UnitPrice":45000,
+						        "Manufacturer":"Dell Inc.",
+								"IsInStock":true
+						   }    
+						]       
+	}  
+
+UseCase:
+========
+	Prepare the JSON format to represent the Account Record, which contains the below fields information.
+	(Field Names: Name, Rating, Industry, AnnualRevenue, Phone, Fax, Type, Ownership, Active__C)
+	
+	{
+		"accountRecord":
+						{
+							"Name":"Srinivas Kumar",
+							"Rating":"Hot",
+							"Industry":"Banking",
+							"AnnualRevenue":2000000,
+							"Phone":"9900998877",
+							"Fax":"9900778855",
+							"Type":"Customer - Direct",
+							"Ownership":"Public",
+							"Active__C":"Yes"
+						}
+	}
+
+UseCase:
+========
+	Prepare the JSON format for the Lead Record, which contains the below fields.
+	(Field Names: FirstName, LastName, Company, Title, Phone, Status, Rating, Industry, AnnualRevenue, City)
+	
+	{
+		"leadRecord":
+					{
+						"FirstName":"Praveen",
+						"LastName":"Kumar",
+						"Company":"Infsys Inc.",
+						"Title":"Project Manager",
+						"Phone":"9900998877",
+						"Status":"Open - Not Contacted",
+						"Rating":"Hot",
+						"Industry":"Manufacturing",
+						"AnnualRevenue":3500000,
+						"City":Hyderabad
+					}
+	}
+
+UseCase:
+========
+	Prepare a JSON format to represent a Hiring Manager Record.
+	
+	{
+		"hrRecord":
+					{
+						"Name":"Pradeep Kumar",
+						"Location__C":"Hyderabad",
+						"Contact_Number__C":"9900556644",
+						"Email_id__C":"pradeep@gmail.com"
+					}
+	}
+	
+UseCase:
+========
+	Prepare the JSON format to represent the 3 Opportunity Records. Which contains the below field values.
+	(Field Names : Name, Amount, StageName, LeadSource, Probability)
+	
+	{
+		"OpportunityRecords":
+							[
+								{
+									"Name":"Opportunity1",
+									"Amount":25000,
+									"StageName":"Prospecting",
+									"LeadSource":"Web",
+									"Probability":10
+								},
+								{
+									"Name":"Opportunity2",
+								    "Amount":15000,
+								    "StageName":"Closed - Won",
+								    "LeadSource":"Phone",
+								    "Probability":100
+								},
+								{
+									"Name":"Opportunity3",
+									"Amount":75000,
+								    "StageName":"Negotiation & Review",
+								    "LeadSource":"Web",
+								    "Probability":40
+								}
+							]
+	}
+	
+	
+UseCase:
+========
+	Prepare the JSON format for the below Apex Class.
+	
+		Public Class CustomerInfo
+		{
+			Public integer customerCode, customerAge;
+			Public string customerName, emailID, address;
+			Public Decimal balanceAmount, loanAmount;
+			Public Boolean isActive;
+		}
+
+	JSON Format:
+		{
+			"customerInfo": 
+							{
+								"customerCode":1004500,
+								"customerAge":32,
+								"customerName":"Raghu Prasad",
+								"emailID":"raghu@gmail.com",
+								"address":"#413, RK Apartments, Sri Nagar Colony,
+											Hyderabad",
+								"balanceAmount":29000,
+								"loanAmount":200000,
+								"isActive":true
+							}
+		}
+
+UseCase:
+========
+	Prepare the JSON format for the below Apex Class.
+	
+		Public Class ProductDetails
+		{
+			Public integer productCode;
+			Public string productName, manufacturerName, location;
+			Public Decimal unitPrice;
+			Public Date manufacturingDate, expiryDate;
+			Public Boolean isInStock;
+		}
+				
+	JSON Format:
+		{
+			"ProductInfo":
+							{
+								"productCode":450060,
+								"productName":"Mobile Device",
+								"manufacturerName":"Samsung Inc.",
+								"location":"India",
+								"unitPrice":25000,
+								"manufacturingDate":"05/01/2020",
+								"expiryDate":"05/01/2025",
+								"isInStock":true
+							}
+		}
+
+UseCase:
+========
+	Prepare the JSON format for the below Wrapper Class.
+	
+	Public Class CaseHelper
+	{
+		Public Case caseRecord;
+		Public Boolean IsInProgess;
+	}
+
+	JSON Format:
+	------------
+	{
+		"caseHelper":
+					 {
+						"IsInProgess":true,
+						"caseRecord":
+									 {
+										"caseNumber":00001006,
+										"Status":"New",
+										"Priority":"High",
+										"Type":"Mechanical",
+										"Reason":"Performance",
+										"Origin":"Phone",
+										"Subject":"My Mobile is not working properly",
+										"Description":"Dear Customer support, my recently purchased Mobile is unable to access the Internet. Please have a look into the issue."
+										
+									 }
+					 }
+	}
+
+JSONGenerator Class:
+====================
+This Class is used to implement the Serialization process through Programatically. We can convert the Apex Object Types into the String formats by using JSONGenerator Class.
+
+We need to Create the JSONGenerator Object as below.
+
+Syntax:
+	System.JSONGenerator <objectName> = System.JSON.CreateGenerator(true);
+	
+Ex:
+	System.JSONGenerator jsonGen = System.JSON.CreateGenerator(true);
+	
+To represent the Apex Types into the JSON format, we have to use the below methods.
+
+Methods:
+--------
+	1. WriteStartObject()
+		This method is used to write the Starting Of the object (i.e. Starting Curly braces) in the JSON content.
+		
+	2. WriteEndObject()
+		This method is used to write the Ending Of the object (i.e. Ending Curly braces) in the JSON content.
+		
+	3. WriteStartArray()
+		This method is used to write the Starting Of the Array (i.e. Starting Square braces) in the JSON content.
+	
+	4. WriteEndArray()
+		This method is used to write the Ending Of the Array (i.e. Ending Square braces) in the JSON content.
+	
+	5. WriteFieldName('FieldName'):
+		This method is used to Create a New Element in the JSON Content. It will write the "FieldName".
+		
+		Ex:
+			WriteFieldName('CustomerCode');
+			
+	6. WriteNumber(Number):
+		This method is used to include the "Numerical value" as the Value for the specified element.
+		
+		Ex:
+			WriteNumber(1001);
+			
+	7. WriteString(StringValue):
+		This method is used to include the "String value" as the Value for the specified element.
+		
+		Ex:
+			WriteString('Pawan Kumar');
+			
+	8. WriteBoolean(TRUE / False):
+		This method is used to include the "Boolean value" as the Value for the specified element.
+
+		Ex:
+			WriteBoolean(true);
+			
+	9. WritNull():
+		This method is used to include the "Null value" as the Value for the specified element.
+
+		Ex: 
+			WriteNull();
+			
+	10. WriteDate(DateValue);
+		This method is used to include the "Date value" as the Value for the specified element.
+			
+		Ex:
+			WriteDate(Date.NewInstance(1990,02,24));
+			
+	11. WriteStringField(<KeyName>,<Value>):
+		This method is used to add a String Element to the JSON content through programming.
+		
+		Ex:
+			WriteStringField('CustomerName','Kiran Kumar');
+			WriteStringField('Industry','Banking');
+			
+	12. WriteNumberField(<KeyName>,<NumericalValue>):
+		This method is used to add a Numerical element to the JSON Content.
+			
+		Ex:
+			WriteNumberField('AnnualRevenue',2000000);
+			
+	13. WriteBooleanField('FieldName',Value):
+		This method is use to add a Boolean field to the JSON Content.
+		
+		Ex:
+			WriteBooleanField('IsActive',true);
+			
+	14. WriteDateField('FieldName',DateValue):
+		This method is used to Write the Date Element to the JSON Content.
+		
+		Ex:
+			WriteDateField('BirthDate',Date.NewInstance(1990,04,27));
+			
+	15. WriteDateTimeField('FieldName',DateTimeValue):
+		This method is used to Write the DateTime Element to the JSON Content.
+		
+	Ex:
+		WriteDateTimeField('CreateDateTime',DateTime.NewInstance(1990,04,27,04,20,10));
+		
+UseCase:
+========		
+	Prepare the JSON format for the Lead Record, which contains the below fields.
+	(Field Names: FirstName, LastName, Company, Title, Phone, Status, Rating, Industry, AnnualRevenue, City)		
+
+Class Code:
+-----------
+public class JSONGeneratorHelper 
+{
+	Public static void CreateJSONContent()
+    {
+        System.JSONGenerator leadGen = System.JSON.createGenerator(true);
+        
+        	leadGen.writeStartObject();  
+        	
+        		//leadGen.writeFieldName('FirstName');
+        		//leadGen.writeString('Ram Kumar');
+        		leadGen.writeStringField('FirstName','Ram');
+        		leadGen.writeStringField('LastName','Kumar');
+        		leadGen.writeStringField('Company','IBM Inc.');
+        		leadGen.writeStringField('Title','Sales Manager');
+        		leadGen.writeStringField('Rating','Hot');
+        		leadGen.writeStringField('Industry','Manufacturing');
+        		leadGen.writeStringField('Phone','9900998877');
+        		leadGen.writeStringField('Fax','990077899');
+        		leadGen.writeNumberField('AnnualRevenue',2000000);
+        		leadGen.writeStringField('City','Hyderabad');
+        		leadGen.writeDateField('BirthDate',Date.newInstance(1980,05,21));
+        
+            leadGen.writeEndObject(); 
+        
+        system.debug('JSON Content is..: '+ leadGen.getAsString());
+    }
+}
+
+Execution:
+----------
+	JSONGeneratorHelper.CreateJSONContent();
+	
+UseCase:
+========
+	Write an apex program, to represent all the Account Records exist in the Account object in the form of JSON format through programming.
+	
+Class Code:
+-----------	
+public class JSONGeneratorHelper 
+{
+    Public Static void AccountRecordsJSONGenerator()
+    {
+        // Get the Records from the object..
+        List<Account> lstAccounts = [Select id, name, rating, industry, annualrevenue, type, 
+                                            Phone, fax, active__C 
+                                                 from Account
+                                                    order by name
+                                                      Limit 5];
+        
+        // Create the JSONGenerator object..
+        System.JSONGenerator accGen = system.JSON.createGenerator(true);
+        
+        accGen.writeStartObject();
+        
+          accGen.writeFieldName('accountRecords');
+          accGen.writeStartArray();
+        
+            if(! lstAccounts.isEmpty())
+                {
+                    for(Account acc : lstAccounts)
+                    {
+                        // Represent each record in the form of an object..
+                        accGen.writeStartObject();
+                          accGen.writeIdField('ID', acc.id);
+                          accGen.writeStringField('Name',acc.Name);                          
+                       
+                          if(acc.Rating == null || acc.Rating == '')
+                                accGen.writeNullField('Rating');
+                          else
+                                accGen.writeStringField('Rating',acc.Rating);
+                          
+                          if(acc.Industry == null || acc.Industry == '')
+                                accGen.writeNullField('Industry');
+                          else
+                                accGen.writeStringField('Industry',acc.Industry);
+                          
+                          if(acc.AnnualRevenue == null)
+                                accGen.writeNullField('AnnualRevenue');
+                          else
+                                accGen.writeNumberField('AnnualRevenue',acc.AnnualRevenue);
+                          
+                          if(Acc.Type == null || acc.Type == '')
+                                accGen.writeNullField('Type');
+                          else
+                               accGen.writeStringField('Type', acc.Type);
+                          
+                          if(acc.Phone == null || acc.Phone == '')
+                                accGen.writeNullField('Phone');
+                          else
+                                accGen.writeStringField('Phone',acc.Phone);
+                          
+                          if(acc.Fax == null || acc.Fax == '')
+                                 accGen.writeNullField('Fax');
+                          else
+                            accGen.writeStringField('Fax',acc.Fax);
+                          
+                          if(acc.Active__c == null || acc.Active__c == '')
+                                accGen.writeNullField('Active__C');
+                          else
+                            accGen.writeStringField('Active__C',acc.Active__c);
+                          
+                        accGen.writeEndObject();                        
+                    }
+                }
+            
+          accGen.writeEndArray();
+        accGen.writeEndObject();
+        
+        system.debug('JSON Content is...: '+ accGen.getAsString());
+    }
+}
+
+syntax : that will help to understand the above  apex code 
+
+{"accountRecords" : 
+   [
+	{r1}
+   ]
+
+}
+
+
+
+Execution:
+----------
+    JSONGeneratorHelper.AccountRecordsJSONGenerator();
+	
+
+
+JSONParser Class:
+=================
+JSONParser Class is used to achieve the DeSerialization Process. i.e. We can Convert the JSON String into our own Object Types.
+
+Upon invoking / consuming the third party WebServices, it will returns the result in the form of JSON format. 
+
+We need to convert the JSON format of content into our own type by using "JSONParser" Class, So that we can use the response inside the application to be get represented inside the VF Page / Store inside the Database / we can use this response as the input for the another WebService call.
+
+i.e. We need to split the complete JSON String into the various smaller pieces called as "Tokens" and we need to iterate the content from starting to ending and we need to parse the content into our own object types.
+
+JSONParser Class provides a set of readymade methods to be used to parse the JSON string into our own object types.
+
+Create the Object of the JSONParser Class as below..
+Syntax:
+	System.JSONParser <objectName> = System.JSON.CreateParser(<JSONString>);
+	
+Methods:
+	1. NextToken():
+		This method is used to move the cursor to the next token inside the JSON string.
+		
+	2. GetCurrentToken():
+		This method is used to get the current Token value.
+		
+	3. GetText():
+		This method is used to collect the current token value in the form of a String.
+		
+	4. GetBooleanValue():
+		To get the Boolean Value exist in the current token.
+		
+	5. GetDecimalValue():
+		If the current token value is a Decimal, then we can collect the decimal value by using this method.
+		
+	6. GetDateTimeValue():
+		If the current token value is of type "DateTime", then we can collect the value by using this method.
+		
+JSONToken Enumeration:
+======================
+Upon parsing the JSON String by dividing into the various small tokens, to identify each token token type we have to use "JSONToken" enumeration. 	 
+
+i.e. We can identify the current token DataType, So that we can fetch the token value and store inside the associated field / variable.
+
+JSONToken provides the below Constants.
+	1. FIELD_NAME
+	2. START_OBJECT
+	3. END_OBJECT
+	4. START_ARRAY
+	5. END_ARRAY
+	6. VALUE_NULL
+	7. VALUE_STRING
+	8. VALUE_TRUE
+	9. VALUE_FALSE
+	10. VALUE_NUMBER_INT
+	11. VALUE_NUMBER_FLOAT
+	
+UseCase:
+========
+	Write an apex program, to parse the JSON Content by using JSON Parser Classes.
+	
+Class Code:
+-----------
+public class JSONParserUtility 
+{
+	Public static void ParseJSONContent()
+    {
+        // take a JSON String..
+        string productJSON = '{"productCode":40056,"productName":"Laptop","Manufacturer":"Lenovo Inc.","UnitPrice":42000,"Location":"Korea"}';
+        
+        // Create the JSONParser Class object..
+        System.JSONParser pParser = System.JSON.createParser(productJSON);
+        
+        While(pParser.nextToken() != null)
+        {
+            if(pParser.getCurrentToken() == JSONToken.FIELD_NAME && pParser.getText() == 'productCode' )
+            {
+                pParser.nextToken();
+                system.debug('Product Code is...: '+ pPArser.getIntegerValue());                
+            }
+            if(pParser.getCurrentToken() == JSONToken.FIELD_NAME && pParser.getText() == 'productName' )
+            {
+                pParser.nextToken();
+                system.debug('Product Name is...: '+ pParser.getText());
+            }
+            if(pParser.getCurrentToken() == JSONToken.FIELD_NAME && pParser.getText() == 'Manufacturer')
+            {
+                pParser.nextToken();
+                system.debug('Manufacturer Name is....: '+ pPArser.getText());
+            }
+            if(pParser.getCurrentToken() == JSONToken.FIELD_NAME && pParser.getText() == 'UnitPrice')
+            {
+                pParser.nextToken();
+                system.debug('Unit Price Value is...: '+ pPArser.getDecimalValue());
+            }
+            if(pParser.getCurrentToken() == JSONToken.FIELD_NAME && pPArser.getText() == 'Location')
+            {
+                pParser.nextToken();
+                system.debug('Location Value is...: '+ pParser.getText());
+            }
+        }
+    }
+}
+
+Execution:
+----------	
+	JSONParserUtility.ParseJSONContent();
+	
+Assignment:
+===========
+	Write an apex program, to parse the below JSON String and represent each value on the Debug Log File.
+	
+				{
+					"Name":"Sanjeev Reddy Nagar",
+					"Description":null,
+					"BranchType":"Sub Post Office",
+					"DeliveryStatus":"Delivery",
+					"Circle":"Andhra Pradesh",
+					"District":"Hyderabad",
+					"Division":"Hyderabad City",
+					"Region":"Hyderabad City",
+					"Block":"Ameerpet",
+					"State":"Telangana",
+					"Country":"India",
+					"Pincode":"500038"
+				}
+
+UseCase:
+========
+	Write an apex program, to DeSerialize the below JSON Content into the Account Record.
+	
+Class Code:
+-----------
+public class JSONParserUtility 
+{
+    Public static void ParseAccountJSON()
+    {
+        string accountJSON = '{"Name":"Raghav Sharma","Rating":"Hot","Industry":"Banking","Type":"Prospect","Ownership":"Public","AnnualRevenue":4200000,"Phone":"8899887766","Fax":"9900990099","customerpriority__C":"High","Active__C":"Yes","Website":"www.salesforce.com"}';
+        
+        Account acc = (Account) System.JSON.deserialize(accountJSON, Account.Class);
+        
+        insert acc;
+        if(acc.id != null)
+        {
+            system.debug('Account Record ID is...: '+ acc.id);
+        }
+        
+        /*
+        // General Process (JSONParser Class)
+        System.JSONParser aParser = System.JSON.createParser(accountJSON);
+        
+        Account accRecord = new Account();
+        
+        While(aParser.nextToken() != null)
+        {
+            if(aParser.getCurrentToken() == JSONtoken.FIELD_NAME && aPArser.getText() == 'Name')
+            {
+                aPArser.nextToken();
+                accRecord.Name = aParser.getText();
+            }
+            if(aPArser.getCurrentToken() == jsontoken.FIELD_NAME && aPArser.getText() =='Rating')
+            {
+                aParser.nextToken();
+                accRecord.Rating = aParser.getText();
+            }
+            if(aParser.getCurrentToken() == jsontoken.FIELD_NAME && aParser.getText() == 'Industry')
+            {
+                aParser.nextToken();
+                accRecord.Industry = aParser.getText();
+                system.debug('Industry ....: '+ aParser.getText());
+            }
+            if(aParser.getCurrentToken() == jsontoken.FIELD_NAME && aParser.getText() == 'Type')
+            {
+                aParser.nextToken();
+                accRecord.Type = aParser.getText();
+            }
+            if(aParser.getCurrentToken() == jsontoken.FIELD_NAME && aParser.getText() == 'Ownership')
+            {
+                aParser.nextToken();
+                accRecord.Ownership = aParser.getText();
+            }
+            if(aParser.getCurrentToken() == jsontoken.FIELD_NAME && aParser.getText() == 'AnnualRevenue')
+            {
+                aParser.nextToken();
+                accRecord.AnnualRevenue = aParser.getDecimalValue();
+            }
+            if(aParser.getCurrentToken() == jsontoken.FIELD_NAME && aParser.getText() == 'Phone')
+            {
+                aParser.nextToken();
+                accRecord.Phone = aParser.getText();
+            }
+            if(aParser.getCurrentToken() == jsontoken.FIELD_NAME && aParser.getText() == 'Fax')
+            {
+                aParser.nextToken();
+                accRecord.Fax = aParser.getText();
+            }
+            if(aParser.getCurrentToken() == jsontoken.FIELD_NAME && aParser.getText() == 'customerpriority__C')
+            {
+                aParser.nextToken();
+                accRecord.CustomerPriority__c = aParser.getText();
+            }
+            if(aParser.getCurrentToken() == jsontoken.FIELD_NAME && aParser.getText() == 'Active__C')
+            {
+                aParser.nextToken();
+                accRecord.Active__c = aParser.getText();
+            }
+            if(aParser.getCurrentToken() == jsontoken.FIELD_NAME && aParser.getText() == 'Website')
+            {
+                aParser.nextToken();
+                accRecord.Website = aParser.getText();
+            }
+        }
+        
+        insert accRecord;
+        if(accRecord.Id != null)
+        {
+             System.debug('Account Record has been Created with the ID ...: '+ accRecord.Id);
+        }
+		*/
+    }
+}
+
+Execution:
+----------
+	JSONParserUtility.ParseAccountJSON();
+	
+UseCase:
+========
+	Write an apex program, to DeSerialize the below Multiple Opportunity Records and insert them into the Opportunity object.
+
+Class Code:
+-----------	
+public class JSONParserUtility 
+{
+    Public static void ParserBulkOpportunitiesJSON()
+    {
+        string opportunityJSON = '[{"Name":"JSONOppostunity1","Amount":30000,"StageName":"Prospecting","LeadSource":"Web","CloseDate":"2020-01-20"},{"Name":"JSONOppostunity2","Amount":40000,"StageName":"Prospecting","LeadSource":"Web","CloseDate":"2020-02-24"},{"Name":"JSONOppostunity3","Amount":50000,"StageName":"Prospecting","LeadSource":"Web","CloseDate":"2020-04-10"}]';  
+        
+        System.JSONParser opParser = System.JSON.createParser(opportunityJSON);
+            
+        List<Opportunity> lstOpportunities = (List<Opportunity>) System.JSON.deserialize(opportunityJSON, List<Opportunity>.Class);
+        
+        insert lstOpportunities;
+         
+    }
+}
+
+Execution:
+----------
+	JSONParserUtility.ParserBulkOpportunitiesJSON();
+
+UseCase:
+========
+	Write an apex program to parse the below JSON Content and represent on the debug Log File / Visualforce Page.
+	
+Custom Class:
+-------------
+public class PostalBranchDetails 
+{
+    Public string Name;
+    Public string Description;
+    Public string BranchType;
+    Public string DeliveryStatus;
+    Public string Circle;
+    Public string District;
+    Public string Division;
+    Public string Region;
+    Public string Block;
+    Public string State;
+    Public string Country;
+    Public string Pincode;
+}
+
+Class Code:
+-----------
+public class JSONParserUtility 
+{
+    Public static void ParserPostalDetailsJSONResponse()
+    {
+        string branchDetailsJSON ='[{"Name":"Gandhi Bhawan (Hyderabad)","Description":null,"BranchType":"Sub Post Office","DeliveryStatus":"Non-Delivery","Circle":"Andhra Pradesh","District":"Hyderabad","Division":"Hyderabad City","Region":"Hyderabad City","Block":"Nampally","State":"Telangana","Country":"India","Pincode":"500001"},{"Name":"Hyderabad ","Description":null,"BranchType":"Head Post Office","DeliveryStatus":"Delivery","Circle":"Andhra Pradesh","District":"Hyderabad","Division":"Hyderabad GPO","Region":"Hyderabad City","Block":"Hyderabad","State":"Telangana","Country":"India","Pincode":"500001"},{"Name":"Moazzampura","Description":null,"BranchType":"Sub Post Office","DeliveryStatus":"Non-Delivery","Circle":"Andhra Pradesh","District":"Hyderabad","Division":"Hyderabad City","Region":"Hyderabad City","Block":"Nampally","State":"Telangana","Country":"India","Pincode":"500001"},{"Name":"Seetharampet","Description":null,"BranchType":"Sub Post Office","DeliveryStatus":"Non-Delivery","Circle":"Andhra Pradesh","District":"Hyderabad","Division":"Hyderabad City","Region":"Hyderabad City","Block":"Nampally","State":"Telangana","Country":"India","Pincode":"500001"},{"Name":"State Bank Of Hyderabad","Description":null,"BranchType":"Sub Post Office","DeliveryStatus":"Non-Delivery","Circle":"Andhra Pradesh","District":"Hyderabad","Division":"Hyderabad City","Region":"Hyderabad City","Block":"Nampally","State":"Telangana","Country":"India","Pincode":"500001"}]';
+        
+        List<PostalBranchDetails> lstBranchResults = (List<PostalBranchDetails>) System.JSON.deserialize(branchDetailsJSON, List<PostalBranchDetails>.Class);
+        system.debug('Branch Details....: '+ lstBRanchResults);
+    }
+}
+
+Execution:
+----------
+	JSONParserUtility.ParserPostalDetailsJSONResponse();
+
+UseCase:
+========
+	Write an apex program to parse the below JSON Content and represent on the Visualforce Page.
+	
+Custom Class Code:
+------------------
+public class PostalBranchDetails 
+{
+    Public string Name{get;set;}
+    Public string Description{get;set;}
+    Public string BranchType{get;set;}
+    Public string DeliveryStatus{get;set;}
+    Public string Circle{get;set;}
+    Public string District{get;set;}
+    Public string Division{get;set;}
+    Public string Region{get;set;}
+    Public string Block{get;set;}
+    Public string State{get;set;}
+    Public string Country{get;set;}
+    Public string Pincode{get;set;}
+}
+
+VF Page Code:
+-------------
+<apex:page controller="ShowBranchDetailsController" >
+<apex:sectionHeader title="Branch Details" subtitle="Postal Branch Details"/>
+<apex:form >
+    <apex:PageBlock title="Postal Branch Details: (  {!lstBranchResults.Size}  )"> 
+        <apex:pageblockTable value="{!lstBranchResults}" var="br">
+            <apex:column value="{!br.Name}"/>
+            <apex:column value="{!br.Description}"/>
+            <apex:column value="{!br.BranchType}"/>
+            <apex:column value="{!br.DeliveryStatus}"/>
+            <apex:column value="{!br.District}"/>
+            <apex:column value="{!br.Division}"/>
+            <apex:column value="{!br.Region}"/>
+            <apex:column value="{!br.State}"/>
+            <apex:column value="{!br.Country}"/>
+            <apex:column value="{!br.pincode}"/>
+        </apex:pageblockTable>
+    </apex:PageBlock>
+</apex:form>
+ 
+</apex:page>
+
+Controller Class:
+-----------------
+public class ShowBranchDetailsController 
+{
+    Public List<PostalBranchDetails> lstBranchResults{get;set;}
+    
+    Public ShowBranchDetailsController()
+    {
+        lstBranchResults = new List<PostalBranchDetails>();
+        
+        string branchDetailsJSON ='[{"Name":"Aluru","Description":null,"BranchType":"Branch Post Office","DeliveryStatus":"Delivery","Circle":"Andhra Pradesh","District":"Guntur","Division":"Tenali","Region":"Vijayawada","Block":"Ponnuru","State":"Andhra Pradesh","Country":"India","Pincode":"522124"},{"Name":"Chinalingayapalem","Description":null,"BranchType":"Branch Post Office","DeliveryStatus":"Delivery","Circle":"Andhra Pradesh","District":"Guntur","Division":"Tenali","Region":"Vijayawada","Block":"Ponnur","State":"Andhra Pradesh","Country":"India","Pincode":"522124"},{"Name":"Chintalapudi","Description":null,"BranchType":"Branch Post Office","DeliveryStatus":"Delivery","Circle":"Andhra Pradesh","District":"Guntur","Division":"Tenali","Region":"Vijayawada","Block":"Ponnur","State":"Andhra Pradesh","Country":"India","Pincode":"522124"},{"Name":"Kasukarru","Description":null,"BranchType":"Branch Post Office","DeliveryStatus":"Delivery","Circle":"Andhra Pradesh","District":"Guntur","Division":"Tenali","Region":"Vijayawada","Block":"Ponnuru","State":"Andhra Pradesh","Country":"India","Pincode":"522124"},{"Name":"Kondabalavaripalem","Description":null,"BranchType":"Branch Post Office","DeliveryStatus":"Delivery","Circle":"Andhra Pradesh","District":"Guntur","Division":"Tenali","Region":"Vijayawada","Block":"Ponnur","State":"Andhra Pradesh","Country":"India","Pincode":"522124"},{"Name":"Nidubrole","Description":null,"BranchType":"Sub Post Office","DeliveryStatus":"Non-Delivery","Circle":"Andhra Pradesh","District":"Guntur","Division":"Tenali","Region":"Vijayawada","Block":"Ponnur","State":"Andhra Pradesh","Country":"India","Pincode":"522124"},{"Name":"Nidubrolu Old Town","Description":null,"BranchType":"Branch Post Office","DeliveryStatus":"Delivery","Circle":"Andhra Pradesh","District":"Guntur","Division":"Tenali","Region":"Vijayawada","Block":"Ponnur","State":"Andhra Pradesh","Country":"India","Pincode":"522124"},{"Name":"Pandrapadu","Description":null,"BranchType":"Branch Post Office","DeliveryStatus":"Delivery","Circle":"Andhra Pradesh","District":"Guntur","Division":"Tenali","Region":"Vijayawada","Block":"Ponnur","State":"Andhra Pradesh","Country":"India","Pincode":"522124"},{"Name":"Ponnur","Description":null,"BranchType":"Sub Post Office","DeliveryStatus":"Delivery","Circle":"Andhra Pradesh","District":"Guntur","Division":"Tenali","Region":"Vijayawada","Block":"Ponnur","State":"Andhra Pradesh","Country":"India","Pincode":"522124"},{"Name":"Ponnur Bazar","Description":null,"BranchType":"Sub Post Office","DeliveryStatus":"Non-Delivery","Circle":"Andhra Pradesh","District":"Guntur","Division":"Tenali","Region":"Vijayawada","Block":"Ponnur","State":"Andhra Pradesh","Country":"India","Pincode":"522124"},{"Name":"Tallapalem","Description":null,"BranchType":"Branch Post Office","DeliveryStatus":"Delivery","Circle":"Andhra Pradesh","District":"Guntur","Division":"Tenali","Region":"Vijayawada","Block":"Ponnur","State":"Andhra Pradesh","Country":"India","Pincode":"522124"},{"Name":"Vaddemukkala","Description":null,"BranchType":"Branch Post Office","DeliveryStatus":"Delivery","Circle":"Andhra Pradesh","District":"Guntur","Division":"Tenali","Region":"Vijayawada","Block":"Ponnur","State":"Andhra Pradesh","Country":"India","Pincode":"522124"},{"Name":"Vallabharaopalem","Description":null,"BranchType":"Branch Post Office","DeliveryStatus":"Delivery","Circle":"Andhra Pradesh","District":"Guntur","Division":"Tenali","Region":"Vijayawada","Block":"Ponnur","State":"Andhra Pradesh","Country":"India","Pincode":"522124"},{"Name":"Valluru","Description":null,"BranchType":"Branch Post Office","DeliveryStatus":"Delivery","Circle":"Andhra Pradesh","District":"Guntur","Division":"Tenali","Region":"Vijayawada","Block":"Ponnur","State":"Andhra Pradesh","Country":"India","Pincode":"522124"},{"Name":"Vupparapalem","Description":null,"BranchType":"Branch Post Office","DeliveryStatus":"Delivery","Circle":"Andhra Pradesh","District":"Guntur","Division":"Tenali","Region":"Vijayawada","Block":"Ponnur","State":"Andhra Pradesh","Country":"India","Pincode":"522124"}]';
+        
+        lstBranchResults = (List<PostalBranchDetails>) System.JSON.deserialize(branchDetailsJSON, List<PostalBranchDetails>.Class);
+    }
+}
+
+
+
+	===================================================================================================================================
+	====================================================================================================================================
+
+
+OAuth Authentication:
+=====================
+OAuth --> Open Authentication
+
+Connected App:
+	|
+	 --> Consumer Secret / Client  Secret
+		 Consumer Key / Client ID
+
+
+UserName Password Flow:
+=======================
+	Step 1: We need Two Salesforce.com Organizations.
+	
+		Provider Organization: training.batch330@cis.com (Chrome)	
+		Consumer Organization: training.batch331@cis.com (FireFox)
+	
+	Step 2: Create the WebService inside the Provider Organization.
+	
+	WebService:
+		@RestResource(URLMapping='/CaseRecordService/*')
+		Global class CaseRecordDetailsService 
+		{
+			@HttpGet
+			Global static Case GetCaseDetailsByID()
+			{
+				Map<String,String> mapInputs =	RestContext.request.Params;
+				
+				Case csRecord = [Select id, caseNumber, status, priority, origin, reason, subject, description
+											from Case
+												Where id =: mapInputs.Get('Id')];
+				
+				return csRecord;
+			}
+		}
+		
+		EndPoint: https://ap16.salesforce.com/services/apexrest/CaseRecordService
+		Method Type: GET
+	
+	Step 3: Create a Connected App inside the Provider Organization, and Generate
+			the Client ID, and Client Secret.
+			
+			Setup --> Build --> Create --> Apps --> Connected Apps
+				1. Click on "New" Button.
+				2. Enter the Connected App Name and Description.
+				3. Enter the CallBack URL / Redirect URL.
+					(Ex: https://ap15.salesforce.com/apex/OAuthUserNamePassword)
+				4. Enter the Email ID.
+				5. Grant the Permissions.
+					1. Select the "Full Permissions".
+				6. Click on "Save" button.
+				
+			Observation:
+				It will Create a Connected App, and Will generate the Client ID and Client Secret.
+				
+			Client ID: 3MVG9G9pzCUSkzZslWuDM1ffFPq1jIRCMnxyWW2GW_qtWROzFGRHfRKCj.nYg117pSyFQOWkaPfqnSjXE5rfF
+			
+			Client Secret: 2BEF1D09B41211D52F7D4896570F4D9473E87B18111F345CAEC3EE809C1927A7
+			
+	Step 4: Create a User Account inside the Provider Organization.
+			User Name: training.batch330@cis.com
+			Password : India@2020
+
+	Step 5: Supply the Required Details to the Consumer Organization.
+				1. Client ID / Consumer Key
+				2. Client Secret / Consumer Secret
+				3. User Name
+				4. Password
+				
+	Step 6: Write the Business Logic inside the Consumer Organization to Get the
+				Access Token by Authorizing with "Authorization Server".
+				
+				6.1. Get the Salesforce Authorization Server URL from Salesforce
+					Documentation to get Authorized.
+					Ex:
+						https://login.salesforce.com/services/oauth2/token
+						
+				6.2. Add the Authorization URL inside the Remote Site Settings of
+					Consumer Organization.
+						
+				6.3. Make a HTTP Request to the Authorization Server, by passing the required parameters and Get the Response, which includes the "Access Token".
+					Parameters:
+						Grant_type=password
+						Client_id=<ClientID>
+						Client_secret=<ClientSecret>
+						username=<username>
+						password=<password>
+					Method Type: POST
+				Observation:
+					Authorization Server will validate all the parameters and will get generate an "Access Token" and send to the Consumer Organization.
+					
+	Step 7: Once the Consumer Organization receives the Access Token from the
+			Authorization Server, then we need to parse the JSON content and get the
+			Access Token.		
+			
+	Step 8: Make a HTTP Request to the Resource Server / WebService to invoke the
+			WebService and Get the Response.
+			
+			8.1. Get the Resource Server URL / EndPoint.
+			8.2. Prepare a HTTP Request to invoke the WebService.
+			8.3. Pass the "Access Token" along with the HTTP Request.
+			8.4. Get the Response from the Resource Server / WebService
+			8.5. Parse the JSON Response received from Resource Server and
+				represent the result on the Visualforce Page / Store inside the Database object.
+			
+UseCase:
+========
+	Design a Visualforce Page, to Get the Case Record Details from the Provider Organization based on the Case Id supplied at runtime. And represent the Case Details on the Visualforce Page.
+	
+	Provider Organization: training.batch330@cis.com (Chrome)	
+	Consumer Organization: training.batch331@cis.com (FireFox)
+	
+Provider (WebService):
+======================
+@RestResource(URLMapping='/CaseRecordService/*')
+Global class CaseRecordDetailsService 
+{
+    @HttpGet
+  Global static Case GetCaseDetailsByID()
+    {
+        Map<String,String> mapInputs =  RestContext.request.Params;
+        
+        Case csRecord = [Select id, caseNumber, status, priority, origin, reason, subject, description
+                              from Case
+                                Where id =: mapInputs.Get('Id')];
+        
+        return csRecord;
+    }
+}
+
+Consumer (VF Page Code):
+------------------------
+<apex:page controller="OAuthGetCaseDetailsController" setup="false" sidebar="false" showheader="true" tabStyle="Order">
+<apex:sectionHeader title="OAuth Authentication" subtitle="Case Details"/> 
+<apex:form >
+    <apex:pageblock title="Case Details Block">
+        <apex:Pageblocksection title="Case Details" columns="2" Collapsible="false">
+            <apex:inputtext label="Enter Case Record ID : " html-placeholder="Enter Case ID" value="{!caseRecordID}"/>
+            <apex:commandButton value="Search Details" action="{!GetCaseDetails}" rerender="pgBlock"/>
+        </apex:Pageblocksection>
+    </apex:pageblock>
+    
+    <apex:pageblock title="Case Details" id="pgBlock">
+    <!--    <apex:outputlabel >{!accessTokenResponse}</apex:outputlabel>
+        <apex:outputlabel > Case Response : {!caseDetailsJSON}</apex:outputlabel> -->
+        <apex:PAgeblockSection title="Case Details" columns="1" collapsible="false">
+            <apex:outputlabel >Case ID : {!caseID}</apex:outputlabel>
+            <apex:outputlabel >Case Number: {!caseNumber}</apex:outputlabel>
+            <apex:outputlabel >Case Status : {!caseStatus}</apex:outputlabel>
+            <apex:outputlabel >Case Priority : {!casePriority}</apex:outputlabel>
+            <apex:outputlabel >Case Type : {!caseType}</apex:outputlabel>
+            <apex:outputlabel >Case Origin : {!caseOrigin}</apex:outputlabel>
+            <apex:outputlabel >Case Reason : {!caseReason}</apex:outputlabel>
+            <apex:outputlabel >Case Subject : {!caseSubject}</apex:outputlabel>
+            <apex:outputlabel >Case Description : {!caseDescription }</apex:outputlabel>
+        </apex:PAgeblockSection>
+    </apex:pageblock>
+</apex:form>
+</apex:page>
+
+Consumer (Controller Class):
+----------------------------
+public class OAuthGetCaseDetailsController 
+{
+    Public string caseRecordID{get;set;}
+    Public string accessTokenResponse{get;set;}
+    Public string caseDetailsJSON{get;set;}
+    
+    // Variables for Case Details...
+    Public string caseID{get;set;}
+    Public string caseNumber{get;set;}
+    Public string caseStatus{get;set;}
+    Public string caseOrigin{get;set;}
+    Public string caseType{get;set;}
+    Public string caseReason{get;set;}
+    Public string casePriority{get;set;}
+    Public string caseSubject{get;set;}
+    Public string caseDescription{get;set;}
+    
+    Public void GetCaseDetails()
+    {
+        // Invoke the Authorization Server and Get Access Token.
+                accessTokenResponse = GetAccessToken();
+        
+        // Write the Business Logic to Get Case Details..
+                if(accessTokenResponse != null && caseRecordID != null && caseRecordID != '')
+            {
+                // Write the HTTPRequest to get the Case Details..
+                string caseServiceEndPointURL = 'https://ap15.salesforce.com/services/apexrest/CaseRecordService/?Id='+ caseRecordID;
+                
+                // Prepare the HttpRequest..
+                HttpRequest caseRequest = new HttpRequest();
+                        caseRequest.setEndpoint(caseServiceEndPointURL);
+                        caseRequest.setMethod('GET');
+                        caseRequest.setHeader('Authorization', 'OAuth '+ accessTokenResponse);
+                
+                HttpResponse caseResponse = new HttpResponse();
+                
+                Http caseHttp = new Http();
+                caseResponse = caseHttp.send(caseRequest);
+                
+                caseDetailsJSON = caseResponse.getBody();
+
+                                // Parse the Content and display the values on the Visualforcrce page..
+                                system.JSONParser cParser = System.JSON.createParser(caseDetailsJSON);
+                
+                While(cParser.nextToken() != null)
+                {
+                        if(cParser.getText() == 'Id')   
+                    {
+                        cParser.nextToken();
+                        caseID = cParser.getText();
+                    }
+                    if(cParser.getText() == 'CaseNumber')
+                    {
+                        cParser.nextToken();
+                        caseNumber = cParser.getText();
+                    }
+                    if(cParser.getText() == 'Status')
+                    {
+                        cParser.nextToken();
+                        caseStatus = cParser.getText();
+                    }
+                    if(cParser.getText() == 'Type')
+                    {
+                        cParser.nextToken();
+                        caseType = cParser.getText();
+                    }
+                    if(cParser.getText() == 'Priority')
+                    {
+                        cParser.nextToken();
+                        casePriority = cParser.getText();
+                    }
+                    if(cParser.getText() == 'Origin')
+                    {
+                        cParser.nextToken();
+                        caseOrigin = cParser.getText();
+                    }
+                    if(cParser.getText() == 'Reason')
+                    {
+                        cParser.nextToken();
+                        caseReason = cParser.getText();
+                    }
+                    if(cParser.getText() == 'Subject')
+                    {
+                        cParser.nextToken();
+                        caseSubject = cParser.getText();
+                    }
+                    if(cParser.getText() == 'Description')
+                    {
+                        cParser.nextToken();
+                        caseDescription = cParser.getText();
+                    }
+                }                
+            }
+    }
+    
+    // This method is used to get the Access Token, by authorizing with "Salesforce Authorization Server".
+    Public string GetAccessToken()
+    {
+        string accessTokenValue;
+        string clientID = '3MVG9G9pzCUSkzZslWuDM1ffFPq1jIRCMnxyWW2GW_qtWROzFGRHfRKCj.nYg117pSyFQOWkaPfqnSjXE5rfF';
+        string clientSecret = '2BEF1D09B41211D52F7D4896570F4D9473E87B18111F345CAEC3EE809C1927A7';
+        string userName = 'training.batch330@cis.com';
+        string passWord = 'India@2020';
+        string oAuthEndPointURL = 'https://login.salesforce.com/services/oauth2/token';
+        
+        string requestBody = 'grant_type=password&client_id='+clientID+
+                                                        '&client_secret='+clientSecret+
+                                                        '&username='+userName+
+                                                        '&password='+passWord;
+        
+        HttpRequest cRequest = new HttpRequest();
+        
+                cRequest.setBody(requestBody);
+                cRequest.setMethod('POST');
+                cRequest.setEndpoint(oAuthEndPointURL);
+        
+        HttpResponse cResponse = new HttpResponse();
+        
+        Http cHttp = new Http();
+        
+        cResponse = cHttp.send(cRequest);
+        
+        // Parse the JSON Response and get the Access Token..
+        System.JSONParser cParser = System.JSON.createParser(cResponse.getBody());
+        While(cParser.nextToken() != null)
+        {
+            if(cParser.getCurrentToken() == System.JSONToken.FIELD_NAME && cParser.getText() == 'access_token')
+            {
+                cParser.nextToken();
+                accessTokenValue = cParser.getText();
+            }
+        }
+        return accessTokenValue;
+    }
+}
+	
+Future CallOuts with OAuth 2.0:
+===============================
+
+	Step 1: We need Two Salesforce.com Organizations.
+			
+			Provider Organization: training.batch330@cis.com (Chrome)	
+			Consumer Organization: training.batch331@cis.com (FireFox)
+
+	Step 2: (Provider) Create a WebService to expose to the Third Party Systems.
+			It should receive the input parameters from the Third Party System and will create a New Record inside the Hiring Manager Object.
+			
+		Service Class:
+		--------------
+			@RestResource(URLMapping='/HiringManagerService/*')
+			Global class HiringManagerRecordsService 
+			{
+				@HttpPost()
+				Global static string InsertNewHRRecord(string hrName, string hrCity, string hrPhone, string hrEmail)
+				{
+					Hiring_Manager__C hrRecord = new Hiring_Manager__C();
+					
+						hrRecord.Name = hrName;
+						hrRecord.Location__c = hrCity;
+						hrRecord.Email_ID__c = hrEmail;
+						hrRecord.Contact_Number__c = hrPhone;
+						
+					insert hrRecord;
+					
+					return 'Success';
+				}
+			}
+	
+	Step 3: (Provider) Create a Connected App and Generate the Client ID / Client Secret.
+	
+		Setup --> Build --> Create --> Apps --> Connected Apps
+				1. Click on "New" Button.
+				2. Enter the Connected App Name and Description.
+				3. Enter the CallBack URL / Redirect URL.
+					(Ex: https://ap15.salesforce.com/apex/OAuthUserNamePassword)
+				4. Enter the Email ID.
+				5. Grant the Permissions.
+					1. Select the "Full Permissions".
+				6. Click on "Save" button.
+				
+			Observation:
+				It will Create a Connected App, and Will generate the Client ID and Client Secret.
+				
+			Client ID: 3MVG9G9pzCUSkzZslWuDM1ffFPq1jIRCMnxyWW2GW_qtWROzFGRHfRKCj.nYg117pSyFQOWkaPfqnSjXE5rfF
+			
+			Client Secret: 2BEF1D09B41211D52F7D4896570F4D9473E87B18111F345CAEC3EE809C1927A7
+	
+	Step 4: (Provider) Create a User Record inside the Organization, to be get shared to
+				Consumer.
+			
+			User Name: training.batch330@cis.com
+			Password : India@2021
+			
+	Step 5: (Provider) Supply the required Input values to the Consumer / Client.
+	
+				1. Client ID / Consumer Key
+				2. Client Secret / Consumer Secret
+				3. User Name and Password
+				4. WebService EndPoint URL.
+				
+	Step 6: (Consumer) Consumer should get the Access Token, by connecting to the
+			Authorization Server by passing the required input parameters.
+			
+	Step 7: (Consumer) Once the Access Token has been received by the Consumer, it
+			should invoke the WebService based on the EndPoint URL by passing the input parameters for the WebService
+
+UseCase:
+========
+	Configure an Integration Process, to Synchronize the Hiring Manager Records from One Organization to another Organization by using "OAuth Authorization UserName-Password Flow".			
+			
+Provider (WebService Class):
+============================
+@RestResource(URLMapping='/HiringManagerService/*')
+Global class HiringManagerRecordsService 
+{
+	@HttpPost()
+    Global static string InsertNewHRRecord(string hrName, string hrCity, string hrPhone, string hrEmail)
+    {
+        Hiring_Manager__C hrRecord = new Hiring_Manager__C();
+        
+        	hrRecord.Name = hrName;
+        	hrRecord.Location__c = hrCity;
+        	hrRecord.Email_ID__c = hrEmail;
+        	hrRecord.Contact_Number__c = hrPhone;
+        	
+        insert hrRecord;
+        
+        return 'Success';
+    }
+}
+
+Consumer (Trigger Code):
+========================
+trigger SyncHRRecordsTrigger on Hiring_Manager__c (after insert) 
+{
+	if(Trigger.isAfter && Trigger.isInsert)
+    {
+        for(Hiring_Manager__C hrRecord : Trigger.New)
+        {
+            // Get the HR Record Details and Prepare the JSON format for HRRecord.
+            System.JSONGenerator hrGenerator = system.JSON.createGenerator(true);
+            
+            	hrGenerator.writeStartObject(); 
+					
+					hrGenerator.writeStringField('hrName', hrRecord.Name);
+            		hrGenerator.writeStringField('hrCity', hrRecord.Location__c);
+            		hrGenerator.writeStringField('hrPhone', hrRecord.Contact_Number__c);
+            		hrGenerator.writeStringField('hrEmail', hrRecord.Email_ID__c);
+            		            
+                hrGenerator.writeEndObject();     
+            
+            // Pass the JSON content to Future Method, To Sync the Record with Provider.
+            SynchronizeHRRecordsHelper.SyncHRRecords(hrGenerator.getAsString());
+        }
+    }
+}
+
+Consumer (Future Method):
+=========================
+public class SynchronizeHRRecordsHelper 
+{
+	// This method is used to get the Access Token, by authorizing with "Salesforce Authorization Server".
+    Public static string GetAccessToken()
+    {
+        string accessTokenValue;
+        string clientID = '3MVG9G9pzCUSkzZslWuDM1ffFPq1jIRCMnxyWW2GW_qtWROzFGRHfRKCj.nYg117pSyFQOWkaPfqnSjXE5rfF';
+        string clientSecret = '2BEF1D09B41211D52F7D4896570F4D9473E87B18111F345CAEC3EE809C1927A7';
+        string userName = 'training.batch330@cis.com';
+        string passWord = 'India@2021';
+        string oAuthEndPointURL = 'https://login.salesforce.com/services/oauth2/token';
+        
+        string requestBody = 'grant_type=password&client_id='+clientID+
+                                                        '&client_secret='+clientSecret+
+                                                        '&username='+userName+
+                                                        '&password='+passWord;
+        
+        HttpRequest cRequest = new HttpRequest();
+        
+                cRequest.setBody(requestBody);
+                cRequest.setMethod('POST');
+                cRequest.setEndpoint(oAuthEndPointURL);
+        
+        HttpResponse cResponse = new HttpResponse();
+        
+        Http cHttp = new Http();
+        
+        cResponse = cHttp.send(cRequest);
+        
+        // Parse the JSON Response and get the Access Token..
+        System.JSONParser cParser = System.JSON.createParser(cResponse.getBody());
+        While(cParser.nextToken() != null)
+        {
+            if(cParser.getCurrentToken() == System.JSONToken.FIELD_NAME && cParser.getText() == 'access_token')
+            {
+                cParser.nextToken();
+                accessTokenValue = cParser.getText();
+            }
+        }
+        return accessTokenValue;
+    }
+    
+    // This method is used to Invoke the Actual WebService, to Synchronize the HR Records into the Provider.    
+    @Future(callout = true)
+    Public static void SyncHRRecords(string hrRecordDetails)
+    {
+        string accessToken;
+        
+        if(hrRecordDetails != null && hrRecordDetails != '')
+        {
+        	accessToken =  GetAccessToken();
+            
+            // Write the Code to invoke the Actual WebService by connecting to the Resource Server.
+            	string hrEndPointURL = 'https://ap15.salesforce.com/services/apexrest/HiringManagerService';
+            
+            	Http hrHttp = new Http();
+            
+            	HttpRequest hrRequest = new HttpRequest();
+            
+            		hrRequest.setBody(hrRecordDetails);
+            		hrRequest.setMethod('POST');
+            		hrRequest.setEndpoint(hrEndPointURL);
+            		hrRequest.setHeader('Authorization', 'OAuth '+ accessToken);
+            		hrRequest.setHeader('Content-Type', 'application/json');
+            
+            	HttpResponse hrResponse = new HttpResponse();
+            	hrResponse = hrHttp.send(hrRequest);
+            
+            	system.debug('HR Record Insertion Status ...: '+ hrResponse.getBody());
+        }
+    }
+}
+
+
+-==========================================================================================================================================================================================
+-==========================================================================================================================================================================================
+
+WebServices: (web services)
+============
+WebService are nothing but the Custom Business Logic, which can be accessible by the External Systems.
+
+By using WebServices we can provide the communication between the different disparate systems, which has been developed by using different programming languages and running on different platforms.
+
+WebServices provides the Platform-independent communication between the applications.
+
+		Salesforce		<------ WebServices  ------>    Java
+		Application						  				Application	
+		
+By using WebServices, we can expose the Data(Records), Business Logics and functionalities to the Third Party Systems.
+
+By using Apex Programming, we can implement 2 Types of WebServices
+
+	1. REST Based WebServices
+	2. SOAP Based WebServices
+	
+REST Based WebServices / Apex REST:
+===================================
+	REST --> Representational State Transfer.
+	
+	By using REST,  we can access the Resources over the internet with the help of HTTP protocol.
+	
+	REST is an Architectural Style, which has been purely built upon HTTP protocol. It used the HTTP protocol internally to provide the communication between the applications.
+	
+	In REST WebServices, each Object, Business Logic and Class and Functionalities should be implemented in the form of a "Resource".
+	
+	Each Resource should be identified by using a "Resource Name". The Developer can provide the resource name based on the need.
+	
+	Ex:
+		Table Name		Resource Name
+		-------------------------------
+		Account 			001
+		Contact				003
+		Opportunity			006
+		Case				500
+		Solution			501
+		Lead				00Q
+		Campaign			701
+		Order				801
+		User				005
+		Task				00T
+		Event				00U
+		Group				00G
+		...
+		...
+	
+	Every resource can be accessible by using a URI (Uniform Resource Identifier).
+	Ex:
+		https://sample.com/<resourceName>
+		
+	Ex:
+		https://ap16.salesforce.com/001 ---> Account Object Records
+		https://ap16.salesforce.com/500 ---> Case Object Records
+		
+		https://ap16.salesforce.com/apex/ShowAllAccountsPage ---> Visualforce Page
+		
+	To access the resources we have to specify the HTTP Method, which indicates what type of operation the user wants to perform on the resource. 
+	
+	HTTP Protocol provides the below Methods.
+	
+		1. GET (To Retrieve the Records from the Resource / Object)
+		2. POST (To Insert the Records into the Resource / Object)
+		3. PUT  (To Update the records into the Resource)
+		4. PATCH (To Perform both INSERT + UPDATE operations on the resource)
+		5. DELETE (To Delete the records from the object / resource)
+		
+	Note:
+		REST based WebServices can provide the results in the form of "XML / JSON / TEXT".
+		
+	Upon Creating the REST WebServices, we have to use the below Annotations.
+
+		1. @RestResource()
+		2. @HttpGet()
+		3. @HttpPost()
+		4. @HttpPut()
+		5. @HttpPatch()
+		6. @HttpDelete()
+		
+@RestResource:
+==============
+	This annotation is used to expose an apex class / business logic class to the Third Party Applications.
+	
+	Inside the Class, we can provide the required Business Logic in the form of various methods.
+	
+	Note:
+		Always WebService class should be defined with "Global" access specifier. We have to specify the resource name for the class by using "@RestResource()" annotation on top of the Class as below.
+		
+	Syntax:
+		@RestResource(URLMapping='/<ResourceName>/*')
+		Global Class <ClassName>
+		{
+			// Write the Business Logic..
+		}
+		
+	Ex:
+		@RestResource(URLMapping='/AccountsService/*')
+		Global Class AccountsManager
+		{
+			// Write the Business Logic..
+		}
+		
+		
+		@RestResource(URLMapping='/CommonService/*')
+		Global Class CommonHelper
+		{
+			// Write the Business Logic...
+		}
+		
+Accessing the Resource:
+-----------------------
+	We can access / invoke each Resource by using a URI over the "http protocol".
+	
+	Syntax:
+		https://<ServerNumber>.Salesforce.com/services/apexrest/<ResourceName>
+		
+	Ex:
+		https://ap16.salesforce.com/services/apexrest/CommonService
+		
+		https://ap16.salesforce.com/services/apexrest/AccountsService
+		
+	We can invoke / test the rest WebServices by using the below tools.
+
+			1. Workbench Tool
+			2. Postman Tool
+			3. HP QTP Tool
+			4. Through Apex Programming
+			5. By using Third Party Applications
+			6. By using Integration Tools
+				(Ex: Tibco, WeMethods, SeeBeyond, BizTalk, MuleSoft,...etc.)
+		
+@HttpGet Method:
+================
+This annotation is used to get the required resource information from the Provider to Consumer.
+
+Note: This annotation can be applicable only on method level (i.e. Procedure / Function)
+
+Note:
+	All the WebService methods should be defined with "Global" access specifier, and should be defined as "Static".
+	
+Syntax:
+	@HttpGet
+	Global static <ReturnType> <MethodName>()
+	{
+		// Write the Business Logic..
+	}
+	
+Note:
+	We can't create multiple methods inside the WebService class with the same annotation.
+	(Ex: We can have only one "@HttpGet" annotated method inside the WebService class).
+	
+Ex:
+	@RestResource(URLMapping='/AccountRecordsService/*')
+	Global Class AccountsManager
+	{
+		@HttpGet
+		Global Static List<Account> GetAllAccounts()
+		{
+			// Write the Business Logic..
+		}
+	}
+	
+UseCase:
+========
+	Create a Restful WebService to get All the Account Records from the Account Object.
+	
+WebService Class:
+-----------------
+@RestResource(URLMapping='/AccountsService/*')
+Global class AccountsManagerService 
+{
+    @HttpGet
+	Global static List<Account> GetAllAccountRecords()
+    {
+        List<Account> lstAccounts = [Select id, name, rating, industry, annualrevenue,
+                                    				phone, fax, type, active__C
+                                    					from Account
+                                    						Order by name];
+        
+        return lstAccounts;
+    }
+}
+
+Testing Process: (By using Workbench Tool : https://Workbench.Developerforce.com)
+----------------
+	Resource URL / EndPoint: /services/apexrest/AccountsService
+	Method Name: GET
+	
+UseCase:
+========
+	Create a Restful WebService to get All the New Cases information from the Case Object.
+	
+WebService Class:
+-----------------
+@RestResource(URLMapping='/CaseService/*')
+Global class CaseManagerService 
+{
+	@HttpGet
+    Global static List<Case> GetAllNewCases()
+    {
+        List<Case> lstCases = [Select id, caseNumber, status, type, reason, origin, 
+                               					priority, subject
+                              						from Case
+                              							Where Status = 'New'
+                              								order by caseNumber];        
+        
+        return lstCases;
+    }
+}
+
+Testing Process:
+----------------
+	Resource URL: /services/apexrest/CaseService
+	Method : GET
+	
+Assignments:
+============
+	1. Create a WebService, to expose all the Hiring Manager Records to the Third Party Applications.
+	
+	2. Create a WebService, to Access all the Lead Records whose AnnualRevenue is more than 2,00,000.
+	
+	3. Create a WebService, to access all the Position Records whose Status is "In Progress".
+	
+RestContext Class:
+==================
+This Class is used to establish the secured communication channel between the Provider and the Consumer. So that Consumer can pass the required input parameters to the Provider.
+
+Then provider can return the required information to the consumer.
+
+It contains the below inner Classes.
+
+	1. RestRequest Class;
+		This Class is used to make a request to the WebService to get the required information.
+		
+		The Consumer can pass the required input parameters to the WebService by using RestRequest class, so that they can get the required response from the WebService.
+		
+		Note:
+			It will store the input parameters in the form of "Key-Value" pairs. Where Key --> Parameter Name. Value --> Parameter Value.
+			
+		Ex:
+						Key				 Value
+					  ---------------------------------
+					    Id				'001464564564'
+						Name			'Test'
+						Rating			'Education'
+						AnnualRevenue 	10000
+			
+		Property:
+			Params:
+				This property contains all the Input Parameters supplied by the Consumer to the WebService Class.
+				
+				It contains the information in the form of a Map Collection. We can collect the input parameters from the "RestRequest" class as below.
+				
+				Syntax:
+					Map<String,String> <objectName> = RestContext.Request.Params;
+					
+				Ex:
+					Map<String, String> inputParams = RestContext.Request.Params;
+					
+	2. RestResponse Class:
+		By using this class, we can collect the response from the WebService class to the Third Party Application.
+			
+UseCase:
+========
+	Create a WebService, to Get the Required Lead Record information based on the Lead ID.
+	
+WebService Class:
+-----------------
+@RestResource(URLMapping='/LeadRecordsService/*')
+Global class LeadManagerService 
+{
+    @HttpGet
+	Global static Lead GetLeadRecordByID()
+    {
+        Map<String,String> inputParams = RestContext.request.Params;
+        
+        Lead leadRecord = [Select id, firstname, lastname, email, company, phone, title,
+                          						Status, fax, rating, industry, annualrevenue
+                          							from Lead
+                          								Where id =: inputParams.get('Id')];
+        
+        
+        return leadRecord; 
+    }
+}
+
+Testing Process:
+---------------
+	Resource URL: /services/apexrest/LeadRecordsService/?Id=00Q2v00001dln9s
+	Method : GET
+	
+UseCase:
+========
+	Create a WebService, to fetch the Case Records based on the specified priority at runtime.
+	
+WebService Class:
+-----------------
+@RestResource(URLMapping='/CaseManagerService/*')
+Global class CaseRecordsService 
+{
+	@HttpGet
+    Global Static List<Case> GetCasesByPriority()
+    {
+        Map<String, String> inputParams = RestContext.request.Params;
+        
+        List<Case> lstCaseRecords = [Select id, caseNumber, Status, Priority, Type, Origin, 
+                                     				Reason, Subject
+                                    					from Case
+                                    						Where Priority =: inputParams.get('priority')];
+        
+        return lstCaseRecords;
+    }
+}
+
+Testing Process:
+----------------
+	Resource URL : /services/apexrest/CaseManagerService/?priority=Medium
+	Method : GET
+		
+Assignments:
+============
+	1. Create a WebService, to Get the required Account Records based on the Specified Industry Name.
+	
+	2. Create a WebService, to Get All the Related Contact Records based on the Specified Account Name.
+	
+	3. Create a WebService, to Get All the Position Records based on the Specified Location Name.
+	
+	4. Create a WebService, to Get All the Related Candidates for the specified "Position Name".
+	
+@HttpDelete Method:
+===================
+By using this method, we can remove either one or more records from the objects with the help of the WebService.
+
+We need to fetch records from the object to be get removed based on one or more conditions.
+
+Syntax:
+	@HttpDelete
+	Global static <ReturnType> <MethodName>()
+	{
+		// Write the Business Logic to Remove the Records.
+	}
+	
+UseCase:
+========
+Create a WebService to remove the Hiring Manager Record from the object based on the Hiring Manager Record Id.
+
+Service Class:
+--------------
+@RestResource(URLMapping='/HRService/*')
+Global class HiringManagerService 
+{
+	@HttpDelete
+    Global static string DeleteHRRecord()
+    {
+     	Map<string, string> inputParams = RestContext.request.Params;        
+        string hrRecordId = inputParams.Get('Id');
+        
+        Delete [Select id, Name from Hiring_Manager__c
+               				Where id =: hrRecordID];     
+        
+        return 'Record Deleted';
+    }
+}
+
+Testing Process:
+----------------
+	EndPoint URL: /services/apexrest/HRService/?Id=a032v00006NYCg0
+	MethodName : DELETE
+	
+UseCase:
+========
+	Create a WebService, to Remove all the Related Contact Records from the object based on the specified Account Name.
+	
+Service Class:
+--------------
+@RestResource(URLMapping='/ContactDeleteService/*')
+Global class ContactsDeletionService 
+{
+	@HttpDelete
+    Global static string RemoveRelatedContacts()
+    {
+        Map<String,String> inputParams = RestContext.request.Params;
+        
+        List<Contact> lstContacts = [Select id, firstname, lastname, Account.Name
+                                     			from Contact
+                                     				Where account.name =: inputParams.Get('Name')];
+        
+        Delete lstContacts;
+        
+        return 'Contacts Deleted';
+    }
+}
+
+Testing Process:
+----------------
+	EndPoint URL: /services/apexrest/ContactDeleteService/?Name=Edge+Communications
+	MethodName : Delete
+	
+Note:
+	Upon Deleting the Records from the Object by using HTTPDelete Method the Deleted Records will get exist inside the RecycleBin for 15 Days.
+	
+@HttpPost Method:
+=================
+By using this method, we can insert either One / More number of records into the Salesforce object with the help of "WebServices".
+
+Upon inserting the records, we have to pass the field values in the form of "{} Format" by using "Request Body".
+
+Syntax:
+	@HttpPost
+	Global Static <ReturnType> <MethodName>(<Parameters>)
+	{
+		// Write the Business Logic to insert the records.
+	}
+	
+UseCase:
+========
+	Create a RestFul WebService, to Insert an Account Record into the object.
+	
+Service Class:
+--------------
+@RestResource(URLMapping='/NewAccountService/*')
+Global class NewAccountsManagerService 
+{
+	@HttpPost
+    Global Static string InsertNewAccount(string accName, string accRating, string accIndustry,
+                                         Decimal accRevenue, string accPhone, string accFax,
+                                         string accWebSite, string accType, string accOwnership,
+                                         string accActive, string accPriority, string accPan)
+    {
+       		Account acc = new Account();
+        
+        	acc.Name = accName;
+        	acc.Rating = accRating;
+        	acc.Industry = accIndustry;
+        	acc.AnnualRevenue = accRevenue;
+        	acc.Phone = accPhone;
+        	acc.Fax = accFax;
+        	acc.Type = accType;
+        	acc.Ownership = accOwnership;
+        	acc.Website = accWebSite;
+        	acc.Active__c = accActive;
+        	acc.CustomerPriority__c = accPriority;
+        	acc.PAN_Number__c = accPan;
+        
+        insert acc;
+        
+        if(acc.Id != null)
+            return 'Account Inserted.';
+        else
+            return 'Something Went Wrong in Account Data.';
+    }
+}
+
+Testing Process:
+----------------
+	EndPoint URL: /services/apexrest/NewAccountService
+	MethodName : POST
+	Request Body: 
+			{
+				"accName":"Santhosh Verma",
+				"accRating":"Hot",
+				"accIndustry":"Technology",
+				"accPhone":"9900998877",
+				"accFax":"9977665566",
+				"accType":"Prospect",
+				"accOwnership":"Private",
+				"accWebSite":"www.salesforce.com",
+				"accPan":"ALPHJ8989E",
+				"accPriority":"High",
+				"accActive":"Yes",
+				"accRevenue":4700000
+			}
+
+UseCase:
+========
+	Create a WebService, to Insert Multiple Hiring Manager Records into the object.
+
+Service Class:
+--------------
+@RestResource(URLMapping='/BulkHRRecordsService/*')
+Global class BulkHiringManagerRecordsService 
+{
+	@HttpPost
+    Global static string InsertBulkHRRecords()
+    {
+        string hrRecordsCollection = RestContext.request.requestBody.ToString();
+        
+        List<Hiring_Manager__C> lstHRRecords = (List<Hiring_Manager__C>) System.JSON.deserialize(hrRecordsCollection, List<Hiring_Manager__C>.Class);
+        
+        if(! lstHRRecords.isEmpty())
+        {
+            insert lstHRRecords;
+            return 'SUCCESS';
+        }
+        else
+            return 'FAILED';
+    }
+}
+
+Testing Process:
+----------------
+	EndPoint URL: /services/apexrest/BulkHRRecordsService
+	MethodName : POST
+	Request Body:
+			[
+				{
+					"Name":"Service 1 HR",
+					"Location__C":"Bangalore",
+					"Contact_Number__C":"9900998877",
+					"Email_id__C":"service1hr@gmail.com"
+				},
+				{
+					"Name":"Service 2 HR",
+					"Location__C":"Hyderabad",
+					"Contact_Number__C":"9900990099",
+					"Email_id__C":"service2hr@gmail.com"
+				},
+				{
+					"Name":"Service 3 HR",
+					"Location__C":"Chennai",
+					"Contact_Number__C":"7788998877",
+					"Email_id__C":"service3hr@gmail.com"
+				},
+				{
+					"Name":"Service 4 HR",
+					"Location__C":"Bangalore",
+					"Contact_Number__C":"8899884466",
+					"Email_id__C":"service4hr@gmail.com"
+				}
+			]
+	
+Assignments:
+============
+	1. Create a WebService, to Insert a Hiring Manager Record into the object.
+	
+	2. Create a WebService, to Insert a Lead Record inside the object with "Hot
+		Rating" and "Finance Industry".
+		
+	3. Create a WebService, to Insert a New Case Record inside the object with "High Priority" and "Working Status".
+	
+	4. Create a WebService, to insert 2 Account Records inside the object.
+	
+	5. Create a WebService, to Insert 5 Opportunity Records inside the object.
+	
+@HttpPut Method:
+================
+By using this method, we can prepare a WebService, which allows us to perform the Update operations on the object records.	
+
+By using this feature, we can update either One / More records inside the object.
+
+Upon updating the records, we have to supply the record Id, and the New Values for the fields to be get updated.
+
+Syntax:
+	@HttpPut
+	Global Static <ReturnType> <MethodName>(<Parameters>)
+	{
+		// Write the Business Logic to Update the Records..
+	}
+	
+UseCase:
+========
+	Create a WebService, to Update the Case Record with the Specified Status and Priority for the Case Record based on the CaseNumber.
+	
+Service Class:
+--------------
+@RestResource(URLMapping='/CaseRecordManagerService/*')
+Global class CaseRecordsManagerService 
+{
+	@HttpPut
+    Global static String UpdateCaseRecord(string cNumber, string cPriority, string cStatus)
+    {
+        if(cNumber != null && cNumber != '')
+        {
+         	Case cRecord = [Select id, caseNumber, priority, Status, origin, reason
+                           				from Case
+                           					Where caseNumber =: cNumber];   
+            
+            if(cRecord.id != null)
+            {
+                cRecord.Status = cStatus;
+                cRecord.Priority = cPriority;
+                
+                update cRecord;
+                
+                return 'Updated Successfully.';
+            }
+            else
+            {
+                return 'Case Record Not Found / Invalid Case Number.';
+            }
+        }
+        else
+            return 'Please provide the Case Number.';
+    }
+}
+
+Testing Procedure:
+------------------
+	EndPoint URL: /services/apexrest/CaseRecordManagerService
+	MethodName : PUT
+	Request Body:			
+			{
+				"cNumber":"00001003",
+				"cPriority":"High",
+				"cStatus":"Working"
+			}
+
+UseCase:
+========
+	Create a WebService, to Assign the Rating Value and the AnnualRevenue value for the Records based on the specified industry as below.
+	
+			Industry Name		Rating			AnnualRevenue
+			--------------------------------------------------
+				Banking			Hot					79,00,000
+				Finance			Warm				57,00,000
+				Insurance		Hot					84,00,000
+				Education		Cold				41,00,000
+				Consulting		Warm				50,00,000
+				
+Service Class:
+--------------
+@RestResource(URLMapping='/AccountsUpdateService/*')
+Global class AccountRecordsManagerService 
+{
+	@HttpPut
+    Global static string UpdateAccountRecords(string accIndustry)
+    {
+        if(accIndustry != null && accIndustry != '')
+        {
+            List<Account> lstAccounts = [Select id, name, industry, rating, annualrevenue
+                                        			from Account 
+                                        				Where industry =: accIndustry];
+            
+            if(! lstAccounts.isEmpty())
+            {
+                for(Account acc : lstAccounts)
+                {
+                    Switch ON acc.Industry
+                    {
+                     	When 'Banking'   
+                        {
+                            acc.Rating = 'Hot';
+                            acc.Annualrevenue = 7900000;
+                        }
+                        When 'Finance'
+                        {
+                            acc.Rating = 'Warm';
+                            acc.Annualrevenue = 5700000;
+                        }
+                        When 'Insurance'
+                        {
+                            acc.Rating = 'Hot';
+                            acc.Annualrevenue = 8400000;
+                        }
+                        When 'Education'
+                        {
+                            acc.Rating = 'Cold';
+                            acc.Annualrevenue = 4100000;
+                        }
+                        When 'Consulting'
+                        {
+                            acc.Rating = 'Warm';
+                            acc.Annualrevenue = 5000000;
+                        }
+                    }
+                }
+                
+                Update lstAccounts;
+                return 'Records Updated.';
+            }
+            else
+                return 'No Matching Records Found.';
+        }
+        else
+        {
+            return 'Please provide the Industry Name.';
+        }
+    }
+}
+
+Testing Process:
+----------------
+	EndPoint URL: /services/apexrest/AccountsUpdateService
+	Method Name: PUT
+	Request Body: 
+		{
+			"accIndustry":"Education"
+		}
+
+@HttpPatch Method:
+==================
+
+Syntax:
+	@HttpPatch
+	Global Static <ReturnType> <MethodName>(<Parameters>)
+	{
+		// Write the Business Logic..
+	}
+	
+UseCase:
+========
+	Create a WebService, to update the Hiring Manager Contact Number as "9900008877" for the HR Records whose Location is equals to the specified CityName at runtime. And Create a New Hiring Manager Record also.
+	
+Service Class:
+--------------
+@RestResource(URLMapping='/HiringManagerPatchService/*')
+Global class HiringManagerUpsertService 
+{
+	@HttpPatch
+    Global Static string UpsertHiringManagerRecords(string hrCityName)
+    {
+        if(hrCityName != null && hrCityName != '')
+        {
+            List<Hiring_Manager__C> lstHRRecords = [Select id, name, Location__C, contact_Number__C
+                                                   				from Hiring_Manager__C
+                                                   					Where Location__C =: hrCityName];
+            
+            if(! lstHRRecords.isEmpty())
+            {
+               List<Hiring_Manager__C> hrRecordsToUpsert = new List<Hiring_Manager__C>();
+                
+               // Assign the New Value for Record..(i.e. Update)
+               for(Hiring_Manager__C hr : lstHRRecords) 
+               {
+                   hr.Contact_Number__C = '9900008877';
+                   
+                   hrRecordsToUpsert.Add(hr);
+               }
+               // Create a New HR Record..
+                Hiring_Manager__C hr = new Hiring_Manager__C();
+                	hr.Name = 'WebService Test HR';
+                	hr.Location__c = 'Chennai';
+                	hr.Contact_Number__c = '9999999999';
+                	hr.Email_ID__c = 'webservicetest@gmail.com';
+                
+                // Add the record to collection..
+                hrRecordsToUpsert.Add(hr);
+                
+                // Perform the Upsert Operations..
+                Upsert hrRecordsToUpsert;
+                
+                return 'Records Upserted';
+            }
+            else
+            {
+                return 'No Matching Records Found.';
+            }
+        }
+        else
+            return 'Please provide the City Name.';
+    }
+}
+
+Testing Process:
+----------------
+	EndPoint URL: /services/apexrest/HiringManagerPatchService
+	MethodName : PATCH
+	Request Body:
+		{
+			  "hrCityName":"Hyderabad"
+		}
+	
+
+OAuth Authentication:
+=====================
+
+Future Callouts:
+================
+
+
+
+
+
+
+
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+				
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+
+
+
+
+
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
+	
+	
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+					
+			
+				
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+					
+					
+				
+					
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+								
