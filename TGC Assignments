@@ -1,0 +1,268 @@
+TGC Assignments
+===============
+
+1 Assignment
+=============
+Here is the new assignment for Monday over TGC 
+i have been created a Custom Object called as Custom Logger
+there are 7 fields over the Same 
+	   field Name : Name ,Type : Text- 255 , satanders field
+	field  Name : Type of Object, Type : Text- 255
+	field Name : Field Name , Type : Text - 255
+	field Name : Previous Value , Type : Text - 255
+	field Name : New Value , Type : Text - 255
+	field Name : Time of Transaction , Type - Date Time
+        field Name : Date of Transaction , Type - Date
+        field Name : Logged In User , Type - User (lookup)
+
+Create a Trigger on the Opportunity Object with opportunityhandler class
+As soon any update is done on an existing opportunity record , we need to capture any update over the opporunities 3 fields (Amount, Stage, Quantity) and create a record of the above custom object (Custom Logger)
+Name of Object in this case will always be 'Opportunity' 
+track all the details of the Opportunity record changes into this custom object in case if any of the 3 field changes occur. So Which of the 3 field changed, what was its previous value and what is the new value , Which user has changed the record, date and timestamp of transaction should reflect in the custom logger and autoamtically a record should crate in custom logger object.
+
+
+
+
+solution: 
+===========
+
+
+public class OpportunityHandler {
+ public static void handleUpdateTrigger(Map<Id, Opportunity> oldOpportunities, Map<Id, Opportunity> newOpportunities) {
+        List<Custom_Logger__c> customLoggerRecords = new List<Custom_Logger__c>();
+        
+        for (Opportunity oldOpp : oldOpportunities.values()) {
+            Opportunity newOpp = newOpportunities.get(oldOpp.Id);
+            
+            if (oldOpp.Amount != newOpp.Amount) {
+                customLoggerRecords.add(createCustomLoggerRecord(oldOpp, newOpp, 'Amount'));
+            }
+            
+            if (oldOpp.StageName != newOpp.StageName) {
+                customLoggerRecords.add(createCustomLoggerRecord(oldOpp, newOpp, 'StageName'));
+            }
+            
+            if (oldOpp.TotalOpportunityQuantity != newOpp.TotalOpportunityQuantity) {
+                customLoggerRecords.add(createCustomLoggerRecord(oldOpp, newOpp, 'TotalOpportunityQuantity'));
+            }
+        }
+     	
+        
+        if (!customLoggerRecords.isEmpty()) {
+            insert customLoggerRecords;
+        }
+    }
+    
+    private static Custom_Logger__c createCustomLoggerRecord(Opportunity oldOpp, Opportunity newOpp, String fieldName) {
+        Custom_Logger__c loggerRecord = new Custom_Logger__c();
+        //loggerRecord.Name = 'Opportunity';
+        loggerRecord.Type_of_Object__c = 'Opportunity';
+        loggerRecord.Field_Name__c = fieldName;
+        loggerRecord.Previous_Value__c = String.valueOf(oldOpp.get(fieldName));
+        loggerRecord.New_Value__c = String.valueOf(newOpp.get(fieldName));
+        loggerRecord.Time_of_Transaction__c = DateTime.now();
+        loggerRecord.Date_of_Transaction__c = Date.today();
+        loggerRecord.Logged_In_User__c = UserInfo.getUserId();
+        loggerRecord.Record_Id__c= oldOpp.Id;
+        return loggerRecord;
+    }
+}
+
+
+-----------------
+
+trigger OpportunityTrigger on Opportunity (before update) {
+     OpportunityHandler.handleUpdateTrigger(Trigger.oldMap, Trigger.newMap);
+
+}
+
+
+=====================================================================
+@@@@@@@@Create a batch class to delete old records in custom logger 
+
+Batch class to delete custom logger object old records 
+========================================================
+
+public class DeleteOldCustomLoggerRecords implements Database.Batchable<sObject> {
+public Database.QueryLocator start(Database.BatchableContext context) {
+    // Query for Custom Logger records older than one month
+	Date oneMonthAgo = Date.today().addMonths(-1);
+	String query = 'SELECT Id FROM Custom_Logger__c WHERE Date_of_Transaction__c < :oneMonthAgo';
+	return Database.getQueryLocator(query);
+	}
+    
+    public void execute(Database.BatchableContext context, List<Custom_Logger__c> scope) {
+        // Delete the Custom Logger records
+		delete scope;
+    }
+    
+    public void finish(Database.BatchableContext context) {	
+   
+        system.debug('Old records are deleted');
+    }
+}
+
+
+------------
+Schedule to DeleteOldCustomLoggerRecords class at mid night 12 am by cron expression  
+
+
+Global class ScheduleDeleteOldCustomLoggerRecords implements Schedulable {
+	global void execute(SchedulableContext ctx) {
+  // Instantiate the DeleteOldCustomLoggerRecords batch class
+   DeleteOldCustomLoggerRecords batch = new DeleteOldCustomLoggerRecords();
+
+   // Start the batch job
+    Database.executeBatch(batch);
+   }
+
+    // Schedule the job to run every day at midnight
+    public static String CRON_EXP = '0 0 0 * * ?';
+
+  
+	public static void scheduleJob() {
+	ScheduleDeleteOldCustomLoggerRecords scheduler = new ScheduleDeleteOldCustomLoggerRecords();
+	String jobName = 'DeleteOldCustomLoggerRecordsJob';
+	System.schedule(jobName, CRON_EXP, scheduler);
+		}
+    }
+ // Method to schedule the job
+//Class ScheduleDeleteOldCustomLoggerRecords must implement the method: void System.Schedulable.execute(System.SchedulableContext)
+
+/* public class ScheduleDeleteOldCustomLoggerRecords {
+
+    public static String scheduleBatch() {
+        String jobId = '';
+        
+        // Create a new batch job instance
+        DeleteOldCustomLoggerRecords batchJob = new DeleteOldCustomLoggerRecords();
+        
+        // Schedule the batch job to run daily at a specific time (adjust as needed)
+        String cronExpression = '0 0 0 * * ?'; // Daily at midnight (00:00:00)
+        
+        // Schedule the batch job
+        System.schedule('DeleteOldCustomLoggerBatchJob', cronExpression, batchJob);
+        
+        return jobId;
+    }
+}
+ */
+
+
+==============================================================================================================================================================================
+===============================================================================================================================================================================
+
+Opoortuinity Line item Handler 
+======================
+
+
+2 things to do today a) Unit test of logger framework when  the opportunity line item updation is done. Update the test class also for this  b) Create another field called as object url in custom logger where we will populate the link of the record . Hint : 'root url/recordid' 
+
+c) Create a batch to delete all custom logger records ehich are more then one month old. Schedule the batch daily
+
+
+public class OpportunityLineItemHandler {
+    public static void handleUpdateTrigger(Map<Id, OpportunityLineItem> oldLineItems, Map<Id, OpportunityLineItem> newLineItems){
+            List<Custom_OpportunityLineItem_Logger__c> loggerRecords = new List<Custom_OpportunityLineItem_Logger__c>();
+        
+        for (OpportunityLineItem oldLineItem : oldLineItems.values()) {
+            OpportunityLineItem newLineItem = newLineItems.get(oldLineItem.Id);
+            
+            
+             if (oldLineItem.UnitPrice != newLineItem.UnitPrice) {
+                loggerRecords.add(createLoggerRecord(oldLineItem, newLineItem ,'UnitPrice'));
+            }
+              if (oldLineItem.Quantity != newLineItem.Quantity) {
+                loggerRecords.add(createLoggerRecord(oldLineItem, newLineItem ,'Quantity'));
+            }
+        }
+        
+        if (!loggerRecords.isEmpty()) {
+            insert loggerRecords;
+        }
+    }
+    
+    private static Custom_OpportunityLineItem_Logger__c createLoggerRecord(OpportunityLineItem oldLineItem, OpportunityLineItem newLineItem, string fieldName) {
+        Custom_OpportunityLineItem_Logger__c loggerRecord = new Custom_OpportunityLineItem_Logger__c();
+        loggerRecord.Name ='Opportunity Line Item';
+        loggerRecord.Record_Id__c = oldLineItem.Id; // Opportunity Line Item Id
+        loggerRecord.Type_of_Object__c = 'OpportunityLineItem';
+        loggerRecord.Field_Name__c = 'fieldName'; 
+        loggerRecord.Previous_Value__c =String.valueOf(oldLineItem.get(fieldName)); 
+        loggerRecord.New_Value__c = String.valueOf(newLineItem.get(fieldName)); 
+        loggerRecord.Time_of_Transaction__c = DateTime.now();
+        loggerRecord.Date_of_Transaction__c = Date.today();
+        loggerRecord.Logged_In_User__c = UserInfo.getUserId();
+        // Construct the URL to redirect to the OpportunityLineItem record
+        loggerRecord.Object_Url__c = '/' + oldLineItem.Id;
+        return loggerRecord;
+    }
+}
+
+---------------
+
+/**
+ * @Author - Rehman
+ * @Date - 26 March
+ * @Description - Class to handle any request related to the OpporunityLineItem
+ * 
+ */
+trigger OpportunityLineItemManager on OpportunityLineItem (before insert,after update,before update,after insert) {
+
+    OpportunityLineItemService oppService = new OpportunityLineItemService();
+    if (Trigger.isAfter){
+        if (Trigger.isInsert) {
+            
+            oppService.afterInsert(Trigger.new,trigger.oldMap);
+        }
+        else if (Trigger.isUpdate) {
+            oppService.afterupdate(Trigger.new,trigger.oldMap);
+        }
+    } else if (Trigger.isBefore) {
+        if (Trigger.isInsert) {
+            
+            oppService.beforeInsert(Trigger.new);
+            
+        }
+        else if (Trigger.isUpdate) {
+            oppService.beforeupdate(Trigger.new,trigger.oldMap);
+            oppService.beforeupdateMaps(Trigger.newMap,trigger.oldMap);
+           OpportunityLineItemHandler.handleUpdateTrigger(Trigger.oldMap, Trigger.newMap);  
+           
+          
+        }
+        //if(Trigger.isBefore && Trigger.isUpdate){
+        // OpportunityLineItemHandler.handleUpdateTrigger(Trigger.oldMap, Trigger.newMap);   
+        //}
+    }
+   
+}
+
+
+batch class 
+=============
+
+Batch class to delete one month old records 
+
+
+public class DeleteOldCustomLoggerRecords implements Database.Batchable<sObject> {
+public Database.QueryLocator start(Database.BatchableContext context) {
+    // Query for Custom Logger records older than one month
+	Date oneMonthAgo = Date.today().addMonths(-1);
+	String query = 'SELECT Id FROM Custom_Logger__c WHERE Date_of_Transaction__c < :oneMonthAgo';
+	return Database.getQueryLocator(query);
+	}
+    
+    public void execute(Database.BatchableContext context, List<Custom_Logger__c> scope) {
+        // Delete the Custom Logger records
+		delete scope;
+    }
+    
+    public void finish(Database.BatchableContext context) {	
+   
+        system.debug('Old records are deleted');
+    }
+}
+
+
+
